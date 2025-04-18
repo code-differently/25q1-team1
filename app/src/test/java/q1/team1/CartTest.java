@@ -34,14 +34,6 @@ public class CartTest {
         assertEquals(2 * 0.99 + 5 * 0.59, cart.getTotalPrice(), 0.01);
     }
 
-    // @Test
-    // public void testAddInvalidQuantityThrowsException() {
-    //     IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-    //         cart.addItem(apple, 0);
-    //     });
-    //     assertEquals("Quantity must be greater than zero", exception.getMessage());
-    // }
-
     @Test
     public void testRemoveItemPartially() throws Exception {
         cart.addItem(apple, 5);
@@ -62,14 +54,6 @@ public class CartTest {
         cart.removeItem(apple, 5); // should remove completely
         assertFalse(cart.getItems().containsKey(apple));
     }
-
-    // @Test
-    // public void testRemoveNonExistentItemThrowsException() {
-    //     Exception exception = assertThrows(Exception.class, () -> {
-    //         cart.removeItem(apple, 1);
-    //     });
-    //     assertEquals("Item does not exist in the cart", exception.getMessage());
-    // }
 
     @Test
     public void testIsEmpty() throws Exception {
