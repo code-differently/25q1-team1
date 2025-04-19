@@ -12,20 +12,29 @@ public class CustomerTest {
   @Test
   public void testAddItemToCart() {
     Customer customer = new Customer("C123");
-    customer.addItemToCart("Apples");
+    Inventory inventory = new Inventory();
+
+    Item apples = new Item("Red apples", 5.00, "apples");
+    inventory.addItem(apples, 10);
+
+    customer.addItemToCart(inventory, "apples", 5);
 
     List<String> cart = customer.getCart();
-    assertTrue(cart.contains("Apples"));
+    assertTrue(cart.contains("apples"));
   }
 
   @Test
   public void testRemoveItemFromCart() {
     Customer customer = new Customer("C123");
-    customer.addItemToCart("Bananas");
+    Inventory inventory = new Inventory();
 
-    boolean removed = customer.removeItemFromCart("Bananas");
+    Item bananas = new Item("Bananas", 5.00, "bananas");
+    inventory.addItem(bananas, 10);
+
+    customer.addItemToCart(inventory, "bananas", 5);
+    boolean removed = customer.removeItemFromCart("bananas");
     assertTrue(removed);
-    assertFalse(customer.getCart().contains("Bananas"));
+    assertFalse(customer.getCart().contains("bananas"));
   }
 
   @Test
