@@ -29,8 +29,10 @@ public class Customer {
   }
 
   // Add item to cart
-  public void addItemToCart(String item) {
-    cart.add(item);
+  public void addItemToCart(Inventory inventory, String itemId, int quantity) {
+    if (inventory.reserveItem(itemId, quantity)) {
+      cart.add(itemId);
+    }
   }
 
   // Remove item from cart
