@@ -1,0 +1,31 @@
+package q1.team1;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+public class EmployeeTest {
+
+  private Employee employee;
+  private Inventory inventory;
+
+  @BeforeEach
+  public void setUp() {
+    employee = new Employee("John Doe", 123, 456);
+    inventory = new Inventory();
+  }
+
+  @Test
+  public void testAddItem() {
+    Item item = new Item("item001", 0, "Laptop");
+    employee.addItem(item, 3, inventory);
+    assertEquals(3, inventory.getStockOfItem("Laptop"));
+  }
+
+  @Test
+  public void testAddToStock() {
+    Item item = new Item("item002", 0, "Mouse");
+    inventory.addItem(item, 2);
+  }
+}
