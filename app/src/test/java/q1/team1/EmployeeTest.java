@@ -1,7 +1,6 @@
 package q1.team1;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -25,7 +24,9 @@ public class EmployeeTest {
 
   @Test
   public void testAddToStock() {
-    Item item = new Item("item002", 0, "Mouse");
-    inventory.addItem(item, 2);
+    Item item = new Item("Mouse", 0, "item002");
+    inventory.addItem(item, 0); // Initialize the item in inventory with 0 stock
+    employee.addToStock("item002", 2, inventory); // Call the addToStock method
+    assertEquals(2, inventory.getStockOfItem("item002")); // Verify stock
   }
 }
