@@ -30,7 +30,6 @@ Managing inventory can lead to errors such as:
 
       ## How We'd Improve The System:
       - Connect to a **database** to persist inventory and orders.
-      - Introduct **interfaces** for each for class (like InventoryService, CartService, etc.)
       - Add a **user inferface** like a web page.
       - Build an admin dashboard for employees to easily access and manage items.
 
