@@ -13,26 +13,26 @@ Managing inventory can lead to errors such as:
   We designed an object-oriented system using Java that separates responsibilities across class to keep the code clean and maintainable.
 
   ### Key Features:
-  - Add and manage products with inventory tracking
-  - Real-time stock updates and item reservation
-  - Custom exceptions for handling errors clearly
+  - Add and manage products with inventory tracking.
+  - Real-time stock updates and item reservation.
+  - Custom exceptions for handling errors clearly.
 
     ### Core Classes:
-    - `Item`: Holds basic product information
-    - `Inventory`: Manages stock and availability
-    - `Cart`: Handles item reservations
-    - `Customer`: Stores customer and cart details
-    - `Product`: Used for categorizing and extending item functionality
+    - `Item`: Holds basic product information.
+    - `Inventory`: Manages stock and availability.
+    - `Cart`: Handles item reservations.
+    - `Customer`: Stores customer and cart details.
+    - `Employee`: Used for adding new items to the inventory and restock existing items. 
 
       We follows the **SOLID Principles** to make the design scalable and easy to maintain.
 
       ---
 
       ## How We'd Improve The System:
-      - Connect to a **database** to persist inventory and orders
+      - Connect to a **database** to persist inventory and orders.
       - Introduct **interfaces** for each for class (like InventoryService, CartService, etc.)
-      - Add a **user inferface** like a web page
-      - Build an admin dashboard for employees to easily access and manage items
+      - Add a **user inferface** like a web page.
+      - Build an admin dashboard for employees to easily access and manage items.
 
      ---
 
