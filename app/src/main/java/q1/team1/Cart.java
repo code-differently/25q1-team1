@@ -2,6 +2,7 @@ package q1.team1;
 
 import java.util.HashMap;
 import java.util.Map;
+import q1.team1.exceptions.ItemNotFoundException;
 
 public class Cart {
   private final String cartId;
@@ -21,9 +22,9 @@ public class Cart {
     items.put(item, items.getOrDefault(item, 0) + quantity);
   }
 
-  public void removeItem(Item item, int quantity) throws Exception {
+  public void removeItem(Item item, int quantity) throws ItemNotFoundException {
     if (!items.containsKey(item)) {
-      throw new Exception("Item not found in cart.");
+      throw new ItemNotFoundException("Item not found in cart.");
     }
 
     int currentQty = items.get(item);
