@@ -66,3 +66,10 @@ Managing inventory can lead to errors such as:
   3. Run the main class or unit tests
 
   ---
+  ## To run our project CLI
+   1. Open Terminal in VS Code
+   2. Run from the root app/src/main/java
+   3. Run command javac q1/team1/*.java
+   4. Run command java q1.team1.CartCLI (To initiate interactive Terminal)
+
+
