@@ -62,12 +62,12 @@ public class CartCLI {
   }
 
   private static void handleRemoveItem() {
-    System.out.print("Enter item name to remove: ");
-    String name = scanner.nextLine();
+    System.out.print("Enter item id to remove: ");
+    String id = scanner.nextLine();
 
     Item itemToRemove = null;
     for (Item item : cart.getItems().keySet()) {
-      if (item.getName().equalsIgnoreCase(name)) {
+      if (item.getName().equalsIgnoreCase(id)) {
         itemToRemove = item;
         break;
       }
