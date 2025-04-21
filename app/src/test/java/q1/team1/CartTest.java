@@ -70,4 +70,16 @@ public class CartTest {
     assertEquals("CART001", cart.getCartId());
     assertEquals("CUSTOMER123", cart.getCustomerId());
   }
+
+  @Test
+  public void testPrintCartWhenEmpty() {
+    cart.printCart(); // should go through the "Cart is empty" branch
+  }
+
+  @Test
+  public void testPrintCartWithItems() {
+    cart.addItem(apple, 2);
+    cart.addItem(banana, 1);
+    cart.printCart(); // should go through the "print all item details" branch
+  }
 }
