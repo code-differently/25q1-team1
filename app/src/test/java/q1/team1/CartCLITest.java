@@ -28,53 +28,6 @@ public class CartCLITest {
     outContent.reset();
   }
 
-  //   @Test
-  //   public void testAddItemAndViewCart() {
-  //     String input =
-  //         String.join(
-  //             "\n",
-  //             "1", // Add item
-  //             "001", // ID
-  //             "Apple", // Name
-  //             "0.99", // Price
-  //             "2", // Quantity
-  //             "3", // View cart
-  //             "4" // Exit
-  //             );
-  //     System.setIn(new ByteArrayInputStream(input.getBytes()));
-  //     CartCLI.main(new String[] {});
-
-  //     String output = outContent.toString();
-  //     assertTrue(output.contains("Item added to cart."));
-  //     assertTrue(output.contains("Apple x 2") || output.toLowerCase().contains("apple x 2"));
-  //     assertTrue(output.contains("Total items: 2"));
-  //     assertTrue(output.contains("Total price: $1.98"));
-  //  }
-
-  //   @Test
-  //   public void testRemoveItemFromCart() {
-  //     String input =
-  //         String.join(
-  //             "\n",
-  //             "1", // Add item
-  //             "002", // ID
-  //             "Banana", // Name
-  //             "0.59", // Price
-  //             "3", // Quantity
-  //             "2", // Remove item
-  //             "Banana", // Name to remove
-  //             "3", // Quantity to remove
-  //             "3", // View cart
-  //             "4" // Exit
-  //             );
-  //     System.setIn(new ByteArrayInputStream(input.getBytes()));
-  //     CartCLI.main(new String[] {});
-
-  //     String output = outContent.toString();
-  //     assertTrue(output.contains("Item removed."));
-  //     assertTrue(output.contains("Cart is empty."));
-  //   }
-
   @Test
   public void testRemoveNonexistentItem() {
     String input =
@@ -108,30 +61,4 @@ public class CartCLITest {
     assertTrue(output.contains("Invalid option"));
     assertTrue(output.contains("Goodbye!"));
   }
-
-  //   @Test
-  //   public void testPartialRemoval() {
-  //     String input =
-  //         String.join(
-  //             "\n",
-  //             "1", // Add item
-  //             "003", // ID
-  //             "Mango", // Name
-  //             "1.50", // Price
-  //             "4", // Quantity
-  //             "2", // Remove item
-  //             "Mango", // Name
-  //             "2", // Quantity to remove
-  //             "3", // View cart
-  //             "4" // Exit
-  //             );
-  //     System.setIn(new ByteArrayInputStream(input.getBytes()));
-  //     CartCLI.main(new String[] {});
-
-  //     String output = outContent.toString();
-  //     assertTrue(output.contains("Mango x 2"));
-  //     assertTrue(output.contains("Total items: 2"));
-  //     assertTrue(output.contains("Total price: $3.00"));
-  //   }
-  // }
 }
