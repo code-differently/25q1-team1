@@ -1,18 +1,74 @@
-# 25q1-team1# Grocery Store Inventory System (Java)
+# Grocery Story Inventory System
+## The Problem: 
+Managing inventory can lead to errors such as: 
+- Overbooking or overselling items
+- Poor visibility into stock levels
+- No easy way for customers to reserve products
 
-This is a simple Java console-based inventory system for a grocery store. It features basic functionality such as managing items, inventory, employees, and customer carts. The project includes exception handling, unit tests, and integration tests.
+  The goal of our project is to create a simple, easy to work with system for a grocery store that helps employees manage stock efficiently and customers view and reserve items that are in stock.
 
-## Features
+  ---
 
-- **Item**: Represents an item with name, cost, and ID.
-- **Inventory**: Manages item stock and availability.
-- **Employee**: Can add new items or restock existing ones.
-- **Customer**: Can reserve (add) items in their cart and remove them.
-- **Cart**: Tracks items reserved by a customer, including quantity and total price.
-- **Custom Exceptions**:
-  - `ItemOutOfStockException`: Thrown when a customer tries to reserve more items than available.
-  - `ItemNotFoundException`: Thrown when an employee tries to restock an item that doesn't exist.
+  ## Our Solution
+  We designed an object-oriented system using Java that separates responsibilities across class to keep the code clean and maintainable.
 
-## Project Structure
+  ### Key Features:
+  - Add and manage products with inventory tracking.
+  - Real-time stock updates and item reservation.
+  - Custom exceptions for handling errors clearly.
 
-src/ ├── Item.java ├── Inventory.java ├── Employee.java ├── Customer.java ├── Cart.java ├── ItemOutOfStockException.java ├── ItemNotFoundException.java tests/ ├── ItemTest.java ├── InventoryTest.java ├── CustomerTest.java ├── EmployeeTest.java ├── CartTest.java ├── SystemIntegrationTest.java
+    ### Core Classes:
+    - `Item`: Holds basic product information.
+    - `Inventory`: Manages stock and availability.
+    - `Cart`: Handles item reservations.
+    - `Customer`: Stores customer and cart details.
+    - `Employee`: Used for adding new items to the inventory and restock existing items. 
+
+      We follows the **SOLID Principles** to make the design scalable and easy to maintain.
+
+      ---
+
+      ## How We'd Improve The System:
+      - Connect to a **database** to persist inventory and orders.
+      - Add a **user inferface** like a web page.
+      - Build an admin dashboard for employees to easily access and manage items.
+
+     ---
+
+    ## Authors: Team 1
+    - A'nanatawa Mcintyre
+    - Jason Watson
+    - John Bey
+    - Rasheed Miller
+    - Mercedes Mathews
+
+    ##Java, JUnit (for testing), and GitHub (for version control) were used to complete this project
+
+    ---
+
+    ## Project Structure:
+    /src
+├── Item.java
+├── Inventory.java
+├── Cart.java
+├── Customer.java
+├── Product.java
+└── exceptions/
+├── ItemNotFoundException.java
+└── ItemOutOfStockException.java
+
+  ---
+
+  ## To run our project:
+  1. Clone the repo
+  2. Open in your IDE (VS Code for example)
+  3. Run the main class or unit tests
+
+  ---
+  ## To run our project CLI
+   1. Open Terminal in VS Code
+   2. Run from the root app/src/main/java
+   3. Run command javac q1/team1/*.java
+   4. Run command java q1.team1.CartCLI (To initiate interactive Terminal)
+
+

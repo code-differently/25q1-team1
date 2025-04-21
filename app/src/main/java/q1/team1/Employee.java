@@ -8,12 +8,12 @@ public class Employee {
   // The key is the item name, and the value is the quantity.
 
   // Method to add an item to the inventory
-  public void addItem(Item item, int quantity, Inventory inventory) {
+  public void addItem(Item item, int quantity, IInventory inventory) {
     inventory.addItem(item, quantity);
   }
 
   // Add to the stack amount of an existing item.
-  public void addToStock(String itemId, int quantity, Inventory inventory) {
+  public void addToStock(String itemId, int quantity, IInventory inventory) {
     inventory.addStock(itemId, quantity);
   }
 }

@@ -13,7 +13,7 @@ public class InventoryTest {
 
   Item apple;
   Item banana;
-  Inventory inventory;
+  IInventory inventory;
 
   @BeforeEach
   public void setUp() {
@@ -31,10 +31,32 @@ public class InventoryTest {
   }
 
   @Test
+  public void testGetItem_ItemNotFoundException() {
+    Exception exception =
+        assertThrows(
+            ItemNotFoundException.class,
+            () -> {
+              inventory.getItem("Apple02");
+            });
+    assertEquals("Item does not exist", exception.getMessage());
+  }
+
+  @Test
   public void testGetStockOfItem() {
     int actual = inventory.getStockOfItem("Apple01");
 
     assertEquals(10, actual);
+  }
+
+  @Test
+  public void testGetStockOfItem_ItemNotFoundException() {
+    Exception exception =
+        assertThrows(
+            ItemNotFoundException.class,
+            () -> {
+              inventory.getStockOfItem("Apple02");
+            });
+    assertEquals("Cannot get stock. Item does not exist", exception.getMessage());
   }
 
   @Test
@@ -43,6 +65,17 @@ public class InventoryTest {
     int actual = inventory.getStockOfItem("Apple01");
 
     assertEquals(15, actual);
+  }
+
+  @Test
+  public void testAddStock_ItemNotFoundException() {
+    Exception exception =
+        assertThrows(
+            ItemNotFoundException.class,
+            () -> {
+              inventory.addStock("Apple02", 5);
+            });
+    assertEquals("Cannot add stock. Item does not exist", exception.getMessage());
   }
 
   @Test

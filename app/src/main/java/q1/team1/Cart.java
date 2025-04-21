@@ -2,8 +2,9 @@ package q1.team1;
 
 import java.util.HashMap;
 import java.util.Map;
+import q1.team1.exceptions.ItemNotFoundException;
 
-public class Cart {
+public class Cart implements ICart {
   private final String cartId;
   private final String customerId;
   private final Map<Item, Integer> items; // Item → Quantity
@@ -14,6 +15,7 @@ public class Cart {
     this.items = new HashMap<>();
   }
 
+  @Override
   public void addItem(Item item, int quantity) {
     if (item == null || quantity <= 0) {
       throw new IllegalArgumentException("Invalid item or quantity.");
@@ -21,9 +23,10 @@ public class Cart {
     items.put(item, items.getOrDefault(item, 0) + quantity);
   }
 
-  public void removeItem(Item item, int quantity) throws Exception {
+  @Override
+  public void removeItem(Item item, int quantity) throws ItemNotFoundException {
     if (!items.containsKey(item)) {
-      throw new Exception("Item not found in cart.");
+      throw new ItemNotFoundException("Item not found in cart.");
     }
 
     int currentQty = items.get(item);
@@ -64,6 +67,7 @@ public class Cart {
     System.out.println("Total price: $" + getTotalPrice());
   }
 
+  @Override
   public boolean isEmpty() {
     return items.isEmpty();
   }
@@ -77,6 +81,7 @@ public class Cart {
     return customerId;
   }
 
+  @Override
   public Map<Item, Integer> getItems() {
     return items;
   }

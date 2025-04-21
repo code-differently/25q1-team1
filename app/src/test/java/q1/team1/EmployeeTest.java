@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 public class EmployeeTest {
 
   private Employee employee;
-  private Inventory inventory;
+  private IInventory inventory;
 
   @BeforeEach
   public void setUp() {
