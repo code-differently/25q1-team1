@@ -2,11 +2,10 @@ package q1.team1;
 
 import java.util.HashMap;
 import java.util.Map;
-
 import q1.team1.exceptions.ItemNotFoundException;
 import q1.team1.exceptions.ItemOutOfStockException;
 
-public class Inventory implements IInventory{
+public class Inventory implements IInventory {
   private final Map<String, Item> itemByItemID = new HashMap<>();
   private final Map<String, Integer> stockByItemId = new HashMap<>();
 
