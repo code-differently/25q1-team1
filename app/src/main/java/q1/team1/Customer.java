@@ -21,9 +21,8 @@ public class Customer {
   // Add item to cart (only if it can be reserved)
   public void addItemToCart(IInventory inventory, String itemId, int quantity, ICart cart) {
     Item item = inventory.getItem(itemId);
-    if (inventory.reserveItem(itemId, quantity)) {
-      cart.addItem(item, quantity);
-    }
+    inventory.reserveItem(itemId, quantity); // will throw if unavailable
+    cart.addItem(item, quantity);
   }
 
   // Remove item from cart

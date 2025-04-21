@@ -2,10 +2,12 @@ package q1.team1;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import q1.team1.exceptions.ItemNotFoundException;
 
 public class CartTest {
 
@@ -81,5 +83,37 @@ public class CartTest {
     cart.addItem(apple, 2);
     cart.addItem(banana, 1);
     cart.printCart(); // should go through the "print all item details" branch
+  }
+
+  @Test
+  public void testAddItem_InvalidArguments() {
+    // null item
+    assertThrows(
+        IllegalArgumentException.class,
+        () -> {
+          cart.addItem(null, 2);
+        });
+
+    // quantity <= 0
+    assertThrows(
+        IllegalArgumentException.class,
+        () -> {
+          cart.addItem(apple, 0);
+        });
+
+    assertThrows(
+        IllegalArgumentException.class,
+        () -> {
+          cart.addItem(apple, -1);
+        });
+  }
+
+  @Test
+  public void testRemoveItem_ItemNotInCart() {
+    assertThrows(
+        ItemNotFoundException.class,
+        () -> {
+          cart.removeItem(banana, 1); // banana was never added
+        });
   }
 }

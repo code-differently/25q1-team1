@@ -1,8 +1,9 @@
 package q1.team1;
 
 public class Employee {
+  private String employeeId;
 
-  public Employee(String john_Doe, int par, int software_Engineer) {}
+  public Employee(String employeeId) {}
 
   // This is the inventory. It will store the items and their quantities.
   // The key is the item name, and the value is the quantity.
@@ -15,5 +16,15 @@ public class Employee {
   // Add to the stack amount of an existing item.
   public void addToStock(String itemId, int quantity, IInventory inventory) {
     inventory.addStock(itemId, quantity);
+  }
+
+  // Getter for customer ID
+  public String getCustomerId() {
+    return employeeId;
+  }
+
+  // Setter for customer ID
+  public void setCustomerId(String employeeId) {
+    this.employeeId = employeeId;
   }
 }
