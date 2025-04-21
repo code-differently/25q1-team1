@@ -1,16 +1,14 @@
 package q1.team1;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Customer {
   private String customerId;
-  private final List<String> cart;
+  private final Cart cart;
 
   // Constructor
   public Customer(String customerId) {
     this.customerId = customerId;
-    this.cart = new ArrayList<>();
+    // Create a Cart instance for this customer, using customer ID as cart ID too
+    this.cart = new Cart(customerId + "_cart", customerId);
   }
 
   // Getter for customer ID
@@ -23,20 +21,25 @@ public class Customer {
     this.customerId = customerId;
   }
 
-  // Get current cart contents
-  public List<String> getCart() {
+  // Getter for the customer's Cart
+  public Cart getCart() {
     return cart;
   }
 
-  // Add item to cart
+  // Add item to cart (only if it can be reserved)
   public void addItemToCart(Inventory inventory, String itemId, int quantity) {
+    Item item = inventory.getItem(itemId);
     if (inventory.reserveItem(itemId, quantity)) {
-      cart.add(itemId);
+      cart.addItem(item, quantity);
     }
   }
 
   // Remove item from cart
-  public boolean removeItemFromCart(String item) {
-    return cart.remove(item); // returns true if removed
+  public void removeItemFromCart(Item item, int quantity) {
+    try {
+      cart.removeItem(item, quantity);
+    } catch (Exception e) {
+      System.out.println("Error: " + e.getMessage());
+    }
   }
 }
