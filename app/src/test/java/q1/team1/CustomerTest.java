@@ -12,7 +12,7 @@ public class CustomerTest {
   public void testAddItemToCart() {
     Customer customer = new Customer("C123");
     IInventory inventory = new Inventory();
-    ICart cart = new Cart("CART001", "C123");
+    Cart cart = new Cart("CART001", "C123");
 
     Item apples = new Item("Red apples", 5.00, "apples");
     inventory.addItem(apples, 10);
@@ -25,7 +25,7 @@ public class CustomerTest {
   public void testRemoveItemFromCart() throws Exception {
     Customer customer = new Customer("C123");
     IInventory inventory = new Inventory();
-    ICart cart = new Cart("CART001", "C123");
+    Cart cart = new Cart("CART001", "C123");
 
     Item bananas = new Item("Bananas", 5.00, "bananas");
     inventory.addItem(bananas, 10);
@@ -46,7 +46,7 @@ public class CustomerTest {
 
   @Test
   public void testCartInitiallyEmpty() {
-    ICart cart = new Cart("CART001", "C123");
+    Cart cart = new Cart("CART001", "C123");
     assertTrue(cart.isEmpty());
   }
 }

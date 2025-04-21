@@ -12,7 +12,7 @@ public class EmployeeTest {
 
   @BeforeEach
   public void setUp() {
-    employee = new Employee("John Doe", 123, 456);
+    employee = new Employee("123");
     inventory = new Inventory();
   }
 
@@ -29,5 +29,11 @@ public class EmployeeTest {
     inventory.addItem(item, 0); // Initialize the item in inventory with 0 stock
     employee.addToStock("item002", 2, inventory); // Call the addToStock method
     assertEquals(2, inventory.getStockOfItem("item002")); // Verify stock
+  }
+
+  @Test
+  public void testSetAndGetEmployeeId() {
+    employee.setCustomerId("321"); // Should update employeeId
+    assertEquals("321", employee.getCustomerId());
   }
 }
