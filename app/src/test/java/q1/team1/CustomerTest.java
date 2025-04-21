@@ -9,35 +9,44 @@ import org.junit.jupiter.api.Test;
 
 public class CustomerTest {
 
-    @Test
-    public void testAddItemToCart() {
-        Customer customer = new Customer("C123");
-        customer.addItemToCart("Apples");
+  @Test
+  public void testAddItemToCart() {
+    Customer customer = new Customer("C123");
+    Inventory inventory = new Inventory();
 
-        List<String> cart = customer.getCart();
-        assertTrue(cart.contains("Apples"));
-    }
+    Item apples = new Item("Red apples", 5.00, "apples");
+    inventory.addItem(apples, 10);
 
-    @Test
-    public void testRemoveItemFromCart() {
-        Customer customer = new Customer("C123");
-        customer.addItemToCart("Bananas");
+    customer.addItemToCart(inventory, "apples", 5);
 
-        boolean removed = customer.removeItemFromCart("Bananas");
-        assertTrue(removed);
-        assertFalse(customer.getCart().contains("Bananas"));
-    }
+    List<String> cart = customer.getCart();
+    assertTrue(cart.contains("apples"));
+  }
 
-    @Test
-    public void testSetAndGetCustomerId() {
-        Customer customer = new Customer("C123");
-        customer.setCustomerId("C999");
-        assertEquals("C999", customer.getCustomerId());
-    }
+  @Test
+  public void testRemoveItemFromCart() {
+    Customer customer = new Customer("C123");
+    Inventory inventory = new Inventory();
 
-    @Test
-    public void testCartInitiallyEmpty() {
-        Customer customer = new Customer("C123");
-        assertTrue(customer.getCart().isEmpty());
-    }
+    Item bananas = new Item("Bananas", 5.00, "bananas");
+    inventory.addItem(bananas, 10);
+
+    customer.addItemToCart(inventory, "bananas", 5);
+    boolean removed = customer.removeItemFromCart("bananas");
+    assertTrue(removed);
+    assertFalse(customer.getCart().contains("bananas"));
+  }
+
+  @Test
+  public void testSetAndGetCustomerId() {
+    Customer customer = new Customer("C123");
+    customer.setCustomerId("C999");
+    assertEquals("C999", customer.getCustomerId());
+  }
+
+  @Test
+  public void testCartInitiallyEmpty() {
+    Customer customer = new Customer("C123");
+    assertTrue(customer.getCart().isEmpty());
+  }
 }
