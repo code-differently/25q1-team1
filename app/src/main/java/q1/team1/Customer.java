@@ -19,7 +19,7 @@ public class Customer {
   }
 
   // Add item to cart (only if it can be reserved)
-  public void addItemToCart(IInventory inventory, String itemId, int quantity, Cart cart) {
+  public void addItemToCart(IInventory inventory, String itemId, int quantity, ICart cart) {
     Item item = inventory.getItem(itemId);
     if (inventory.reserveItem(itemId, quantity)) {
       cart.addItem(item, quantity);
@@ -27,7 +27,7 @@ public class Customer {
   }
 
   // Remove item from cart
-  public void removeItemFromCart(Item item, int quantity, Cart cart) {
+  public void removeItemFromCart(Item item, int quantity, ICart cart) throws Exception {
     cart.removeItem(item, quantity);
   }
 }
