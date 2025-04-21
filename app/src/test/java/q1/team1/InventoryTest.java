@@ -13,7 +13,7 @@ public class InventoryTest {
 
   Item apple;
   Item banana;
-  Inventory inventory;
+  IInventory inventory;
 
   @BeforeEach
   public void setUp() {
