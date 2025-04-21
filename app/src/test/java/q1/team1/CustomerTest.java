@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.Map;
 import org.junit.jupiter.api.Test;
 
 public class CustomerTest {
@@ -12,47 +11,30 @@ public class CustomerTest {
   @Test
   public void testAddItemToCart() {
     Customer customer = new Customer("C123");
-    Inventory inventory = new Inventory();
+    IInventory inventory = new Inventory();
+    Cart cart = new Cart("CART001", "C123");
 
     Item apples = new Item("Red apples", 5.00, "apples");
     inventory.addItem(apples, 10);
 
-    customer.addItemToCart(inventory, "apples", 5);
-
-    Map<Item, Integer> cartItems = customer.getCart().getItems();
-    assertTrue(cartItems.containsKey(apples));
-    assertEquals(5, cartItems.get(apples));
+    customer.addItemToCart(inventory, "apples", 5, cart);
+    assertEquals(5, cart.getItems().get(apples));
   }
 
   @Test
   public void testRemoveItemFromCart() {
     Customer customer = new Customer("C123");
-    Inventory inventory = new Inventory();
+    IInventory inventory = new Inventory();
+    Cart cart = new Cart("CART001", "C123");
 
     Item bananas = new Item("Bananas", 5.00, "bananas");
     inventory.addItem(bananas, 10);
 
-    customer.addItemToCart(inventory, "bananas", 5);
-    customer.removeItemFromCart(bananas, 3);
-
-    Map<Item, Integer> cartItems = customer.getCart().getItems();
-    assertTrue(cartItems.containsKey(bananas));
-    assertEquals(2, cartItems.get(bananas));
-  }
-
-  @Test
-  public void testRemoveItemCompletelyFromCart() {
-    Customer customer = new Customer("C123");
-    Inventory inventory = new Inventory();
-
-    Item oranges = new Item("Oranges", 4.50, "oranges");
-    inventory.addItem(oranges, 5);
-
-    customer.addItemToCart(inventory, "oranges", 5);
-    customer.removeItemFromCart(oranges, 5);
-
-    Map<Item, Integer> cartItems = customer.getCart().getItems();
-    assertFalse(cartItems.containsKey(oranges));
+    customer.addItemToCart(inventory, "bananas", 5, cart);
+    customer.removeItemFromCart(bananas, 3, cart);
+    assertEquals(2, cart.getItems().get(bananas));
+    customer.removeItemFromCart(bananas, 2, cart);
+    assertFalse(cart.getItems().containsKey(bananas));
   }
 
   @Test
@@ -64,7 +46,7 @@ public class CustomerTest {
 
   @Test
   public void testCartInitiallyEmpty() {
-    Customer customer = new Customer("C123");
-    assertTrue(customer.getCart().isEmpty());
+    Cart cart = new Cart("CART001", "C123");
+    assertTrue(cart.isEmpty());
   }
 }
