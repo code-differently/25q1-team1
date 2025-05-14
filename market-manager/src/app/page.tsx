@@ -1,7 +1,10 @@
+
+// Landing page — can redirect to /home or act as a welcome screen (not sure if we'll keep this yet)
+
 'use client';
 
 import { useEffect } from 'react';
-import { auth, db } from '@/lib/firebase';
+import { auth, db } from '@/src/lib/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 
 export default function Home() {

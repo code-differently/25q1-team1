@@ -1,0 +1,1 @@
+// Functions to manage cart data (addToCart, getCartByCustomer)
