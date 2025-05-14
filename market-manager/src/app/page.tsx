@@ -1,3 +1,4 @@
+
 // Landing page — can redirect to /home or act as a welcome screen (not sure if we'll keep this yet)
 
 'use client';
