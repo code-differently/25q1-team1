@@ -2,7 +2,7 @@
 
 import { Item } from './Item';
 
-export class CartManager {
+export class cart {
     private carts: Map<string, Item[]> = new Map();
 
     addToCart(customerId: string, item: Item): void {
