@@ -1,0 +1,1 @@
+// Interface for Customer (id, name, email, optional cartId, etc.)

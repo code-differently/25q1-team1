@@ -1,3 +1,5 @@
+// Initializes Firebase SDK (auth, firestore) using environment variables
+
 // lib/firebase.ts
 
 import { initializeApp, getApps, getApp } from 'firebase/app';

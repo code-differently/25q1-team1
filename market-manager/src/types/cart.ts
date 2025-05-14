@@ -1,0 +1,1 @@
+// Interface for Cart (customer ID, list of reserved items, timestamps, etc.)
