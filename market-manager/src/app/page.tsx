@@ -3,19 +3,13 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { Product } from '@/src/types/product';
 
 export default function Home() {
-  interface Product {
-    id: string;
-    name: string;
-    quantity: number;
-    price: number;
-  }
 
   const [products, setProducts] = useState<Product[]>([]); // State to store product data
 
   useEffect(() => {
-
     // Call the fruits request
     fetch('/api/products')
       .then((response) => response.json())
