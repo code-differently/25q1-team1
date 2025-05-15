@@ -1,1 +1,0 @@
-// API GET endpoint — fetches all available items from Firestore

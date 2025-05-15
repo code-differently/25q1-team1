@@ -1,1 +1,0 @@
-// Functions to interact with the 'items' collection (getAvailableItems, reserveItem)
