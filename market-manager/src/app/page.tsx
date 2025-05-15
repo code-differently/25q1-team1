@@ -3,26 +3,18 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { auth, db } from '@/src/lib/firebase';
-import { onAuthStateChanged } from 'firebase/auth';
 
 export default function Home() {
   interface Product {
     id: string;
     name: string;
     quantity: number;
+    price: number;
   }
 
   const [products, setProducts] = useState<Product[]>([]); // State to store product data
 
   useEffect(() => {
-    console.log('Firebase Auth:', auth);
-    console.log('Firebase DB:', db);
-
-    // Optional: Check if someone is logged in
-    onAuthStateChanged(auth, (user) => {
-      console.log('Current user:', user);
-    });
 
     // Call the fruits request
     fetch('/api/products')
@@ -46,17 +38,17 @@ export default function Home() {
         <table className="table-auto border-collapse border border-gray-400 mt-4">
           <thead>
             <tr>
-              <th className="border border-gray-400 px-4 py-2">ID</th>
               <th className="border border-gray-400 px-4 py-2">Name</th>
               <th className="border border-gray-400 px-4 py-2">Quantity</th>
+              <th className="border border-gray-400 px-4 py-2">Price</th>
             </tr>
           </thead>
           <tbody>
             {products.map((product) => (
               <tr key={product.id}>
-                <td className="border border-gray-400 px-4 py-2">{product.id}</td>
                 <td className="border border-gray-400 px-4 py-2">{product.name}</td>
                 <td className="border border-gray-400 px-4 py-2">{product.quantity}</td>
+                <td className="border border-gray-400 px-4 py-2">{product.price}</td>
               </tr>
             ))}
           </tbody>
