@@ -4,6 +4,7 @@
 
 import { useEffect, useState } from 'react';
 import { Product } from '@/src/types/product';
+import Link from 'next/link';
 
 export default function HomePage() {
 
@@ -24,8 +25,12 @@ export default function HomePage() {
 
   return (
     <main className="p-4">
-      <h1 className="text-2xl font-bold">Welcome to Store Manager</h1>
-      <p>Check your browser console for Firebase logs and API response.</p>
+      <h1 className="text-2xl font-bold">Welcome to Market Manager</h1>
+      <Link href="/customerCart">
+        <button className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+          Go to Customer Cart
+        </button>
+      </Link>
 
       {/* Render the products in a table */}
       {products.length > 0 ? (
