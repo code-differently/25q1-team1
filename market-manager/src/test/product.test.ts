@@ -1,18 +1,4 @@
-import { calculateTotal, Product } from '../types/product'; // adjust the path based on your project structure
-
-describe('calculateTotal', () => {
-  it('should return price * quantity', () => {
-    const product: Product = {
-      id: 'p1',
-      name: 'Phone',
-      price: 100,
-      quantity: 3,
-      category: 'Electronics',
-    };
-    expect(calculateTotal(product)).toBe(300);
-  });
-});
-
+import { Product, calculateTotal } from '../types/product'; // adjust the path based on your project structure
 
 describe('Product Interface', () => {
   const mockProduct: Product = {
@@ -39,5 +25,34 @@ describe('Product Interface', () => {
     expect(typeof mockProduct.quantity).toBe('number');
     expect(typeof mockProduct.price).toBe('number');
     expect(typeof mockProduct.category).toBe('string');
+  });
+
+  it('should calculate total correctly', () => {
+    const total = calculateTotal(mockProduct);
+    expect(total).toBe(999.90); // 99.99 * 10
+  });
+
+  it('should return 0 if quantity is 0', () => {
+    const productWithZeroQuantity: Product = { ...mockProduct, quantity: 0 };
+    const total = calculateTotal(productWithZeroQuantity);
+    expect(total).toBe(0);
+  });
+
+  it('should handle negative quantity gracefully', () => {
+    const productWithNegativeQuantity: Product = { ...mockProduct, quantity: -5 };
+    const total = calculateTotal(productWithNegativeQuantity);
+    expect(total).toBe(-499.95); // -99.99 * 5
+  });
+
+  it('should handle zero price', () => {
+    const productWithZeroPrice: Product = { ...mockProduct, price: 0 };
+    const total = calculateTotal(productWithZeroPrice);
+    expect(total).toBe(0);
+  });
+
+  it('should handle negative price', () => {
+    const productWithNegativePrice: Product = { ...mockProduct, price: -99.99 };
+    const total = calculateTotal(productWithNegativePrice);
+    expect(total).toBe(-999.90); // -99.99 * 10
   });
 });
