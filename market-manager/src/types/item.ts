@@ -1,1 +1,0 @@
-// Interface for Item objects (id, name, quantity, price, etc.)

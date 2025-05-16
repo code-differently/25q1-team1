@@ -1,6 +1,6 @@
 // Interface for Item objects (id, name, quantity, price, etc.)
 
-export interface product {
+export interface Product {
   id: string;
   name: string;
   quantity: number;
