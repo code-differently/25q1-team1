@@ -1,1 +1,0 @@
-// Customer-facing storefront — displays all available items in the market
