@@ -1,1 +1,5 @@
-// Interface for Cart (customer ID, list of reserved items, timestamps, etc.)
+// src/types/cart.ts
+export interface CartItem {
+  id: string;
+  quantity: number;
+}
