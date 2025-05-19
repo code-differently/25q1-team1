@@ -23,11 +23,12 @@ export default function HomePage() {
   return (
     <main className={styles.container}>
       <section className={styles.section}>
-      <User />
+      <div className={styles.headerRow}>
         <h1 className={styles.heading}>
           🍓 Welcome to <span className={styles.headingHighlight}>Market Manager</span>
         </h1>
-
+        <User />
+      </div>
         {products.length > 0 ? (
           <div className={styles.tableContainer}>
             <table className={styles.table}>
