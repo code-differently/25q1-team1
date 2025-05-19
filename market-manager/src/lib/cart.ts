@@ -1,40 +1,50 @@
-import { db } from "./firebase"; // Your Firestore instance
-import { doc, getDoc, setDoc, updateDoc, increment } from "firebase/firestore";
+import { Product } from '@/src/types/product';
+import { CartItem } from './CartItem'; // adjust path as needed
 
-export async function addToCart(customerId: string, itemId: string, quantity: number): Promise<void> {
-  const itemRef = doc(db, "items", itemId);
-  const itemSnap = await getDoc(itemRef);
+export class Cart {
+  private items: Map<string, CartItem>;
 
-  if (!itemSnap.exists()) {
-    throw new Error("Item not found in inventory");
+  constructor() {
+    this.items = new Map();
   }
 
-  const itemData = itemSnap.data();
-  if (itemData.quantity < quantity) {
-    throw new Error("Insufficient item stock");
+  addProduct(product: Product, quantity: number = 1): void {
+    if (this.items.has(product.id)) {
+      const existing = this.items.get(product.id)!;
+      existing.quantity += quantity;
+    } else {
+      this.items.set(product.id, { product, quantity });
+    }
   }
 
-  const cartItemRef = doc(db, "customers", customerId, "cart", itemId);
-  const cartSnap = await getDoc(cartItemRef);
+  removeProduct(productId: string): void {
+    this.items.delete(productId);
+  }
 
-  if (cartSnap.exists()) {
-    // Update quantity if already in cart
-    await updateDoc(cartItemRef, {
-      quantity: increment(quantity),
+  updateQuantity(productId: string, quantity: number): void {
+    if (this.items.has(productId)) {
+      if (quantity <= 0) {
+        this.removeProduct(productId);
+      } else {
+        const item = this.items.get(productId)!;
+        item.quantity = quantity;
+      }
+    }
+  }
+
+  getTotal(): number {
+    let total = 0;
+    this.items.forEach(item => {
+      total += item.product.price * item.quantity;
     });
-  } else {
-    // Add new item to cart
-    await setDoc(cartItemRef, {
-      itemId,
-      name: itemData.name,
-      price: itemData.price,
-      quantity,
-      addedAt: new Date().toISOString(),
-    });
+    return total;
   }
 
-  // Deduct from inventory
-  await updateDoc(itemRef, {
-    quantity: itemData.quantity - quantity,
-  });
+  getItems(): CartItem[] {
+    return Array.from(this.items.values());
+  }
+
+  clear(): void {
+    this.items.clear();
+  }
 }
