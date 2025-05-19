@@ -1,31 +1,26 @@
 import { Product } from '@/src/types/product';
 
 export class Cart {
-  private items: Map<string, Product>;
+  // Correct and consistent use of one product storage structure
+  private products: { [id: string]: Product & { quantity: number } } = {};
 
-  constructor() {
-    this.items = new Map();
+  addProduct(product: Product, quantity: number = 1): void {
+    if (this.products[product.id]) {
+      this.products[product.id].quantity += quantity;
+    } else {
+      this.products[product.id] = { ...product, quantity };
+    }
   }
-
-private products: { [id: string]: Product & { quantity: number } } = {};
-
-addProduct(product: Product, quantity: number = 1): void {
-  if (this.products[product.id]) {
-    this.products[product.id].quantity += quantity;
-  } else {
-    this.products[product.id] = { ...product, quantity };
-  }
-}
 
   removeProduct(productId: string): void {
-    this.items.delete(productId);
+    delete this.products[productId];
   }
 
-  getProduct(): Product[] {
-    return Array.from(this.items.values());
+  getProducts(): (Product & { quantity: number })[] {
+    return Object.values(this.products);
   }
 
   clear(): void {
-    this.items.clear();
+    this.products = {};
   }
 }
