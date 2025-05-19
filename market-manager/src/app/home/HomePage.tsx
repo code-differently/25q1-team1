@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from 'react';
 import { Product } from '@/src/types/product';
-import Link from 'next/link';
 import styles from './HomePage.module.css';
+import User from '../components/User';
 
 export default function HomePage() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -23,19 +23,12 @@ export default function HomePage() {
   return (
     <main className={styles.container}>
       <section className={styles.section}>
+      <div className={styles.headerRow}>
         <h1 className={styles.heading}>
           🍓 Welcome to <span className={styles.headingHighlight}>Market Manager</span>
         </h1>
-
-        {/* 🔐 Login Button */}
-        <Link href="/login">
-          <button className={styles.button}>Login</button>
-        </Link>
-
-        <Link href="/customerCart">
-          <button className={styles.button}>Go to Customer Cart</button>
-        </Link>
-
+        <User />
+      </div>
         {products.length > 0 ? (
           <div className={styles.tableContainer}>
             <table className={styles.table}>

@@ -22,6 +22,12 @@
   margin-bottom: 1rem;
 }
 
+.headerRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .headingHighlight {
   color: #2563eb; /* Tailwind blue-600 */
 }
