@@ -1,2 +1,5 @@
-// API POST: creates a new customer profile in Firestore
-// API GET (optional): fetches customer profile by ID
+import { NextResponse } from 'next/server';
+
+export async function GET() {
+  return NextResponse.json({ message: 'Customer route works!' });
+}
