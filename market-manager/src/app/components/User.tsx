@@ -12,36 +12,75 @@ export default function User() {
 
   const handleLogout = async () => {
     await signOut(auth);
-    router.refresh(); // Re-run server components + layout
+    router.refresh();
+  };
+
+  const buttonStyle = {
+    padding: '0.75rem 1.5rem',
+    backgroundColor: '#2563eb',
+    color: '#ffffff',
+    fontWeight: 600,
+    border: 'none',
+    borderRadius: '0.375rem',
+    cursor: 'pointer',
+    transition: 'background-color 0.3s ease',
   };
 
   return (
-    <div style={{
-      position: 'absolute',
-      top: '1rem',
-      right: '1rem',
-      display: 'flex',
-      alignItems: 'center',
-      gap: '1rem',
-    }}>
+    <div
+      style={{
+        position: 'absolute',
+        top: '1rem',
+        right: '1rem',
+        display: 'flex',
+        alignItems: 'center',
+        gap: '1rem',
+      }}
+    >
       {user ? (
         <>
-          <span style={{ fontWeight: 500 }}>
+          <span style={{ fontWeight: 500, color: '#1f2937' }}>
             Welcome, {user.displayName || user.email}
           </span>
           <Link href="/customerCart">
-          <button style={{ padding: '0.5rem 1rem' }}>View Cart</button>
-        </Link>
+            <button
+              style={buttonStyle}
+              onMouseOver={(e) =>
+                (e.currentTarget.style.backgroundColor = '#1d4ed8')
+              }
+              onMouseOut={(e) =>
+                (e.currentTarget.style.backgroundColor = '#2563eb')
+              }
+            >
+              View Cart
+            </button>
+          </Link>
           <button
             onClick={handleLogout}
-            style={{ padding: '0.5rem 1rem' }}
+            style={buttonStyle}
+            onMouseOver={(e) =>
+              (e.currentTarget.style.backgroundColor = '#1d4ed8')
+            }
+            onMouseOut={(e) =>
+              (e.currentTarget.style.backgroundColor = '#2563eb')
+            }
           >
             Logout
           </button>
         </>
       ) : (
         <Link href="/login">
-          <button style={{ padding: '0.5rem 1rem' }}>Login</button>
+          <button
+            style={buttonStyle}
+            onMouseOver={(e) =>
+              (e.currentTarget.style.backgroundColor = '#1d4ed8')
+            }
+            onMouseOut={(e) =>
+              (e.currentTarget.style.backgroundColor = '#2563eb')
+            }
+          >
+            Login
+          </button>
         </Link>
       )}
     </div>
