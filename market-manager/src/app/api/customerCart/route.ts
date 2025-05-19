@@ -1,2 +1,6 @@
-// API GET: retrieves customer’s cart
-// API POST: adds or updates items in the customer's cart
+export async function POST(request: Request) {
+  const data = await request.json();
+  return new Response(JSON.stringify({ received: data }), {
+    headers: { 'Content-Type': 'application/json' },
+  });
+}
