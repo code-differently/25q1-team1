@@ -1,41 +1,53 @@
-// Import your Cart class if it's in a different file
-// import { Cart } from './Cart';
+import { Cart } from '../lib/cart';
+import { Product } from '../types/product';
 
-import { Cart } from "../lib/cart";
-import { Product } from "../types/product";
+describe('Cart functionality', () => {
+  let cart: Cart;
+  const product1: Product = {
+    id: '1',
+    name: 'Laptop',
+    price: 1000,
+    quantity: 0,
+    category: '',
+  };
+  const product2: Product = {
+    id: '2',
+    name: 'Phone',
+    price: 500,
+    quantity: 0,
+    category: '',
+  };
 
-const cart = new Cart();
+  beforeEach(() => {
+    cart = new Cart();
+  });
 
-// Sample products
-const product1: Product = {
-    id: '1', name: 'Laptop', price: 1000, quantity: 0,
-    category: "",
-    product: undefined
-};
-const product2: Product = {
-    id: '2', name: 'Phone', price: 500, quantity: 0,
-    category: "",
-    product: undefined
-};
+  test('should add products correctly', () => {
+    cart.addProduct(product1, 2);
+    cart.addProduct(product2, 1);
 
-// Add products
-cart.addProduct(product1, 2); // 2 Laptops
-cart.addProduct(product2, 1); // 1 Phone
+    const items = cart.getProducts();
+    expect(items.length).toBe(2);
+    expect(items.find((item) => item.id === '1')?.quantity).toBe(2);
+    expect(items.find((item) => item.id === '2')?.quantity).toBe(1);
+  });
 
-console.log('Items after adding:', cart.getItems());
-console.log('Total:', cart.getTotal()); // 2*1000 + 1*500 = 2500
+  test('should remove a product', () => {
+    cart.addProduct(product1, 1);
+    cart.addProduct(product2, 1);
+    cart.removeProduct('2');
 
-// Update quantity
-cart.updateQuantity('1', 1); // Reduce Laptops to 1
-console.log('Items after updating quantity:', cart.getItems());
-console.log('Total:', cart.getTotal()); // 1*1000 + 1*500 = 1500
+    const items = cart.getProducts();
+    expect(items.length).toBe(1);
+    expect(items[0].id).toBe('1');
+  });
 
-// Remove product
-cart.removeProduct('2');
-console.log('Items after removing product 2:', cart.getItems());
-console.log('Total:', cart.getTotal()); // Only 1 Laptop left = 1000
+  test('should clear the cart', () => {
+    cart.addProduct(product1, 1);
+    cart.addProduct(product2, 1);
+    cart.clear();
 
-// Clear cart
-cart.clear();
-console.log('Items after clearing:', cart.getItems()); // []
-console.log('Total after clearing:', cart.getTotal()); // 0
+    expect(cart.getProducts()).toEqual([]);
+  });
+});
+
