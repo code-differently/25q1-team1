@@ -1,8 +1,8 @@
 import { Product } from '@/src/types/product';
-import { CartItem } from './CartItem'; // adjust path as needed
+
 
 export class Cart {
-  private items: Map<string, CartItem>;
+  private items: Map<string, Product>;
 
   constructor() {
     this.items = new Map();
@@ -13,7 +13,7 @@ export class Cart {
       const existing = this.items.get(product.id)!;
       existing.quantity += quantity;
     } else {
-      this.items.set(product.id, { product, quantity });
+      this.items.set(product.id, { ...product, quantity });
     }
   }
 
@@ -40,7 +40,7 @@ export class Cart {
     return total;
   }
 
-  getItems(): CartItem[] {
+  getItems(): Product[] {
     return Array.from(this.items.values());
   }
 
