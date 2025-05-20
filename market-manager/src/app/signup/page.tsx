@@ -3,8 +3,9 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { auth, db } from '@/src/lib/firebase';
-import { createUserWithEmailAndPassword, updateProfile} from 'firebase/auth';
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
+import styles from './SignUpPage.module.css';
 
 export default function SignUpPage() {
   const [name, setName] = useState('');
@@ -21,10 +22,8 @@ export default function SignUpPage() {
       const userCred = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCred.user;
 
-      // Update Firebase Auth display name
       await updateProfile(user, { displayName: name });
 
-      // Create customer document
       await setDoc(doc(db, 'customers', user.uid), {
         id: user.uid,
         email: user.email,
@@ -43,16 +42,16 @@ export default function SignUpPage() {
   };
 
   return (
-    <div style={{ maxWidth: '400px', margin: '5rem auto', textAlign: 'center' }}>
-      <h2 style={{ marginBottom: '2rem' }}>Create Account</h2>
-      <form onSubmit={handleSignUp} style={{ display: 'flex', flexDirection: 'column' }}>
+    <div className={styles.container}>
+      <h2 className={styles.heading}>Create Account</h2>
+      <form onSubmit={handleSignUp} className={styles.form}>
         <input
           type="text"
           placeholder="Full Name"
           value={name}
           required
           onChange={(e) => setName(e.target.value)}
-          style={{ marginBottom: '1rem', padding: '0.5rem' }}
+          className={styles.input}
         />
         <input
           type="email"
@@ -60,7 +59,7 @@ export default function SignUpPage() {
           value={email}
           required
           onChange={(e) => setEmail(e.target.value)}
-          style={{ marginBottom: '1rem', padding: '0.5rem' }}
+          className={styles.input}
         />
         <input
           type="password"
@@ -68,16 +67,12 @@ export default function SignUpPage() {
           value={password}
           required
           onChange={(e) => setPassword(e.target.value)}
-          style={{ marginBottom: '1rem', padding: '0.5rem' }}
+          className={styles.input}
         />
-        <button type="submit" style={{ marginBottom: '1rem', padding: '0.75rem', backgroundColor: '#34a853', color: '#fff' }}>
-          Create Account
-        </button>
-        <a href="/login" style={{ color: '#4285F4', textDecoration: 'underline', cursor: 'pointer' }}>
-          Login instead
-        </a>
+        <button type="submit" className={styles.button}>Create Account</button>
+        <a href="/login" className={styles.link}>Login instead</a>
       </form>
-      {error && <p style={{ color: 'red', marginTop: '1rem' }}>{error}</p>}
+      {error && <p className={styles.error}>{error}</p>}
     </div>
   );
 }
