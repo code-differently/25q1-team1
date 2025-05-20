@@ -15,17 +15,21 @@ export default function User() {
     router.refresh();
   };
 
-  const buttonStyle = {
+  const baseButtonStyle = {
     padding: '0.75rem 1.5rem',
-    backgroundColor: '#2563eb',
     color: '#ffffff',
     fontWeight: 600,
     border: 'none',
-    borderRadius: '0.375rem',
+    borderRadius: '0.5rem',
     cursor: 'pointer',
-    transition: 'background-color 0.3s ease',
+    boxShadow: '0 4px 10px rgba(0, 0, 0, 0.1)',
+    transition: 'all 0.3s ease',
+    background: '', // Set dynamically
   };
 
+  const emeraldGradient = 'linear-gradient(to right, #10b981, #059669)';
+  const emeraldHover = 'linear-gradient(to right, #059669, #047857)';
+ 
   return (
     <div
       style={{
@@ -36,30 +40,32 @@ export default function User() {
     >
       {user ? (
         <>
-          <span style={{ fontWeight: 600, color: '#1f2937' }}>
+          <span style={{ fontWeight: 600, color: '#f0fdf4' }}>
             Welcome, {user.displayName || user.email}
           </span>
+
           <Link href="/customerCart">
             <button
-              style={buttonStyle}
+              style={{ ...baseButtonStyle, background: emeraldGradient }}
               onMouseOver={(e) =>
-                (e.currentTarget.style.backgroundColor = '#1d4ed8')
+                (e.currentTarget.style.background = emeraldHover)
               }
               onMouseOut={(e) =>
-                (e.currentTarget.style.backgroundColor = '#2563eb')
+                (e.currentTarget.style.background = emeraldGradient)
               }
             >
               View Cart
             </button>
           </Link>
+
           <button
             onClick={handleLogout}
-            style={buttonStyle}
+            style={{ ...baseButtonStyle, background: emeraldGradient }}
             onMouseOver={(e) =>
-              (e.currentTarget.style.backgroundColor = '#1d4ed8')
+              (e.currentTarget.style.background = emeraldHover)
             }
             onMouseOut={(e) =>
-              (e.currentTarget.style.backgroundColor = '#2563eb')
+              (e.currentTarget.style.background = emeraldGradient)
             }
           >
             Logout
@@ -68,12 +74,12 @@ export default function User() {
       ) : (
         <Link href="/login">
           <button
-            style={buttonStyle}
+            style={{ ...baseButtonStyle, background: emeraldGradient }}
             onMouseOver={(e) =>
-              (e.currentTarget.style.backgroundColor = '#1d4ed8')
+              (e.currentTarget.style.background = emeraldHover)
             }
             onMouseOut={(e) =>
-              (e.currentTarget.style.backgroundColor = '#2563eb')
+              (e.currentTarget.style.background = emeraldGradient)
             }
           >
             Login

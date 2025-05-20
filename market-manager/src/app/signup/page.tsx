@@ -43,36 +43,45 @@ export default function SignUpPage() {
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.heading}>Create Account</h2>
-      <form onSubmit={handleSignUp} className={styles.form}>
-        <input
-          type="text"
-          placeholder="Full Name"
-          value={name}
-          required
-          onChange={(e) => setName(e.target.value)}
-          className={styles.input}
-        />
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          required
-          onChange={(e) => setEmail(e.target.value)}
-          className={styles.input}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          required
-          onChange={(e) => setPassword(e.target.value)}
-          className={styles.input}
-        />
-        <button type="submit" className={styles.button}>Create Account</button>
-        <a href="/login" className={styles.link}>Login instead</a>
-      </form>
-      {error && <p className={styles.error}>{error}</p>}
+      <div className={styles.signupCard}>
+        <h2 className={styles.heading}>Create Account</h2>
+        <form onSubmit={handleSignUp} className={styles.form}>
+          <input
+            type="text"
+            placeholder="Full Name"
+            value={name}
+            required
+            onChange={(e) => setName(e.target.value)}
+            className={styles.input}
+          />
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            required
+            onChange={(e) => setEmail(e.target.value)}
+            className={styles.input}
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            required
+            onChange={(e) => setPassword(e.target.value)}
+            className={styles.input}
+          />
+          <button type="submit" className={styles.button}>
+            Create Account
+          </button>
+        </form>
+        <p>
+          Already have an account?{' '}
+          <a href="/login" className={styles.link}>
+            Login
+          </a>
+        </p>
+        {error && <p className={styles.error}>{error}</p>}
+      </div>
     </div>
   );
 }
