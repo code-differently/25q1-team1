@@ -29,9 +29,6 @@ export default function User() {
   return (
     <div
       style={{
-        position: 'absolute',
-        top: '1rem',
-        right: '1rem',
         display: 'flex',
         alignItems: 'center',
         gap: '1rem',
@@ -39,7 +36,7 @@ export default function User() {
     >
       {user ? (
         <>
-          <span style={{ fontWeight: 500, color: '#1f2937' }}>
+          <span style={{ fontWeight: 600, color: '#1f2937' }}>
             Welcome, {user.displayName || user.email}
           </span>
           <Link href="/customerCart">

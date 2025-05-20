@@ -1,5 +1,6 @@
 'use client';
 
+import Slideshow from '../components/Slideshow';
 import { useEffect, useState } from 'react';
 import { Product } from '@/src/types/product';
 import styles from './HomePage.module.css';
@@ -8,6 +9,7 @@ import User from '../components/User';
 
 export default function HomePage() {
   const [products, setProducts] = useState<Product[]>([]);
+  const [isShrunk, setIsShrunk] = useState(false);
 
   useEffect(() => {
     fetch('/api/products')
@@ -20,23 +22,20 @@ export default function HomePage() {
       });
   }, []);
 
-  const [isShrunk, setIsShrunk] = useState(false);
-
-useEffect(() => {
-  const handleScroll = () => {
-    setIsShrunk(window.scrollY > 50);
-  };
-
-  window.addEventListener('scroll', handleScroll);
-  return () => window.removeEventListener('scroll', handleScroll);
-}, []);
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsShrunk(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <>
       <header className={`${styles.header} ${isShrunk ? styles.shrunk : ''}`}>
         <div className={styles.logoWrapper}>
           <Image
-            src="/images/transparentcrate.png" // Make sure this image exists
+            src="/images/transparentcrate.png"
             alt="ThymeCrate Logo"
             width={900}
             height={500}
@@ -49,6 +48,8 @@ useEffect(() => {
 
       <main className={styles.container}>
         <section className={styles.section}>
+        <Slideshow />   {/* ✅ Add this line right here */}
+
           <h1 className={styles.heading}>
             The Produce Junction
           </h1>
@@ -57,35 +58,33 @@ useEffect(() => {
           </p>
 
           {products.length > 0 ? (
-  <div className={styles.productGrid}>
-    {products.map((product) => (
-      <div key={product.id} className={styles.productCard}>
-        <div className={styles.productImage}>
-          <img
-            src={product.imageUrl || "/images/placeholder.png"}
-            alt={product.name}
-          />
-        </div>
-        <div className={styles.productContent}>
-          <h3 className={styles.productName}>{product.name}</h3>
-          <p className={styles.productCategory}>Category: {product.category || 'General'}</p>
-          <p className={styles.productDescription}>
-            {product.description || 'No description provided.'}
-          </p>
-          <p className={styles.productPrice}>${product.price.toFixed(2)}</p>
-          <p className={styles.productStock}>{product.quantity} in stock</p>
-          <button className={styles.addToCart}>Add to Cart</button>
-        </div>
-      </div>
-    ))}
-  </div>
-) : (
-  <p className={styles.message}>No products available.</p>
-)}
+            <div className={styles.productGrid}>
+              {products.map((product) => (
+                <div key={product.id} className={styles.productCard}>
+                  <div className={styles.productImage}>
+                    <img
+                      src={product.imageUrl || "/images/placeholder.png"}
+                      alt={product.name}
+                    />
+                  </div>
+                  <div className={styles.productContent}>
+                    <h3 className={styles.productName}>{product.name}</h3>
+                    <p className={styles.productCategory}>Category: {product.category || 'General'}</p>
+                    <p className={styles.productDescription}>
+                      {product.description || 'No description provided.'}
+                    </p>
+                    <p className={styles.productPrice}>${product.price.toFixed(2)}</p>
+                    <p className={styles.productStock}>{product.quantity} in stock</p>
+                    <button className={styles.addToCart}>Add to Cart</button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p className={styles.message}>No products available.</p>
+          )}
         </section>
       </main>
     </>
   );
-  
 }
-
