@@ -11,7 +11,7 @@ const images = [
 
 export default function Slideshow() {
   return (
-    <div style={{ width: '100vw', margin: 0, padding: 0 }}>
+    <div style={{ width: 'auto', margin: 0, padding: 0 }}>
       <Carousel
         autoPlay
         infiniteLoop
@@ -28,7 +28,7 @@ export default function Slideshow() {
           <div
             key={index}
             style={{
-              width: '100vw',
+              width: 'auto',
               height: '60vh',
               display: 'flex',
               justifyContent: 'center',
