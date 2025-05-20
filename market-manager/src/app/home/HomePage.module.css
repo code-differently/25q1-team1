@@ -85,3 +85,17 @@
 .message {
   color: #4b5563; /* Tailwind gray-600 */
 }
+
+.quantityControl {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Make sure it's centered horizontally */
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.quantityDisplay {
+  min-width: 2ch;
+  text-align: center;
+  font-weight: bold;
+}
