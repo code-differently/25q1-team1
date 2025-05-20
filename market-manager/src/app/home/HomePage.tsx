@@ -10,6 +10,7 @@ import User from '../components/User';
 export default function HomePage() {
   const [products, setProducts] = useState<Product[]>([]);
   const [isShrunk, setIsShrunk] = useState(false);
+  const [quantities, setQuantities] = useState<{ [productId: string]: number }>({});
 
   useEffect(() => {
     fetch('/api/products')
@@ -29,6 +30,27 @@ export default function HomePage() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const changeQuantity = (productId: string, delta: number) => {
+    setQuantities((prev) => {
+      const current = prev[productId] || 0;
+      const updated = Math.max(current + delta, 0);
+      return {
+        ...prev,
+        [productId]: updated,
+      };
+    });
+  };
+
+  const handleAddToCart = (product: Product) => {
+    const quantity = quantities[product.id] || 0;
+    if (quantity === 0) return;
+  
+    // For now -- later replace this with saving to Firestore
+    console.log('Adding to cart:', { ...product, quantity });
+  
+    setQuantities((prev) => ({ ...prev, [product.id]: 0 }));
+  };
 
   return (
     <>
@@ -62,10 +84,10 @@ export default function HomePage() {
               {products.map((product) => (
                 <div key={product.id} className={styles.productCard}>
                   <div className={styles.productImage}>
-                    <img
-                      src={product.imageUrl || "/images/placeholder.png"}
-                      alt={product.name}
-                    />
+                  <img
+                    src={`/images/${product.img}` || "/images/placeholder.png"}
+                    alt={product.name}
+                  />
                   </div>
                   <div className={styles.productContent}>
                     <h3 className={styles.productName}>{product.name}</h3>
@@ -75,7 +97,18 @@ export default function HomePage() {
                     </p>
                     <p className={styles.productPrice}>${product.price.toFixed(2)}</p>
                     <p className={styles.productStock}>{product.quantity} in stock</p>
-                    <button className={styles.addToCart}>Add to Cart</button>
+                    <div className={styles.quantityControl}>
+                      <button onClick={() => changeQuantity(product.id, -1)} className={styles.cartButton}>−</button>
+                      <span className={styles.quantityDisplay}>{quantities[product.id] || 0}</span>
+                      <button onClick={() => changeQuantity(product.id, 1)} className={styles.cartButton}>+</button>
+                    </div>
+                    <button
+                      className={styles.addToCart}
+                      onClick={() => handleAddToCart(product)}
+                      disabled={(quantities[product.id] || 0) === 0}
+                    >
+                      Add to Cart
+                    </button>
                   </div>
                 </div>
               ))}
@@ -86,5 +119,6 @@ export default function HomePage() {
         </section>
       </main>
     </>
+
   );
 }
