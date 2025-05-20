@@ -1,24 +1,67 @@
-/* HomePage.module.css */
+/* HEADER SECTION */
+
+.header {
+  width: 100%;
+  height: 175px; /* Set a fixed height */
+  background: linear-gradient(to right, #7ba440, #b4c94f);
+  padding: 0 2rem;
+  display: flex;
+  justify-content: center; /* So logo and user component can spread out */
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.shrunk {
+  height: 60px;
+  padding: 0 1rem;
+}
+
+
+.logoShrunk {
+  height: 40px;
+}
+
+.logoWrapper {
+  transition: all 0.3s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo {
+  width: 400px;       /* Set a fixed width */
+  height: auto;       /* Maintain aspect ratio */
+  object-fit: contain;
+  margin-top: 8px;   /* Add vertical spacing */
+  transition: height 0.3s ease-in-out;
+}
+
+/* You can keep your existing styles below */
 
 .container {
   min-height: 100vh;
-  background-color: #f3f4f6; /* Tailwind gray-100 */
+  background: linear-gradient(to bottom right, #6b8e23, #b4c94f);
   padding: 2rem;
 }
 
 .section {
-  max-width: 80rem;
+  max-width: 1200px;
   margin: 0 auto;
-  background-color: #ffffff;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  border-radius: 0.5rem;
-  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  border-radius: 1rem;
+  padding: 2rem;
+  backdrop-filter: blur(10px);
 }
 
 .heading {
-  font-size: 1.875rem; /* text-3xl */
+  font-size: 2.25rem;
   font-weight: 700;
-  color: #1f2937; /* Tailwind gray-800 */
+  color: #ffffff;
   margin-bottom: 1rem;
 }
 
@@ -29,57 +72,84 @@
 }
 
 .headingHighlight {
-  color: #2563eb; /* Tailwind blue-600 */
+  color: #dcfce7;
 }
 
-.button {
-  margin-bottom: 1.5rem;
-  padding: 0.75rem 1.5rem;
-  background-color: #2563eb; /* Tailwind blue-600 */
-  color: #ffffff;
-  font-weight: 600;
+.message {
+  color: #f3f4f6;
+}
+
+/* ✅ move these OUTSIDE of .message */
+
+.productGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.productCard {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(8px);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.productImage img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.productName {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.productCategory {
+  font-size: 0.85rem;
+  color: #d1fae5;
+  margin-bottom: 0.5rem;
+}
+
+.productDescription {
+  font-size: 0.9rem;
+  margin-bottom: 0.75rem;
+  color: #f0fdf4;
+}
+
+.productPrice {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.productStock {
+  font-size: 0.9rem;
+  color: #bbf7d0;
+  margin-bottom: 1rem;
+}
+
+.addToCart {
+  background-color: #10b981;
+  color: white;
   border: none;
-  border-radius: 0.375rem;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
-.button:hover {
-  background-color: #1d4ed8; /* Tailwind blue-700 */
-}
-
-.tableContainer {
-  overflow-x: auto;
-}
-
-.table {
-  width: 100%;
-  border: 1px solid #d1d5db; /* Tailwind gray-300 */
-  border-radius: 0.375rem;
-  border-collapse: collapse;
-}
-
-.thead {
-  background-color: #dbeafe; /* Tailwind blue-100 */
-}
-
-.th {
-  padding: 0.75rem 1.5rem;
-  text-align: left;
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: #374151; /* Tailwind gray-700 */
-  border-bottom: 1px solid #d1d5db;
-}
-
-.td {
-  padding: 1rem 1.5rem;
-  color: #1f2937;
-  border-bottom: 1px solid #e5e7eb;
-}
-
-.tr:hover {
-  background-color: #f9fafb;
+.addToCart:hover {
+  background-color: #059669;
 }
 
 .message {
@@ -93,6 +163,8 @@
   gap: 0.5rem;
   width: 100%;
 }
+
+
 
 .quantityDisplay {
   min-width: 2ch;
