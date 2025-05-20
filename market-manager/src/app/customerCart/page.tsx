@@ -1,14 +1,15 @@
 import Link from 'next/link';
+import styles from './CustomerCart.module.css';
 
 export default function CustomerCart() {
   return (
-    <div>
-      <h1>Customer Cart</h1>
-      <Link href="/">
-        <button className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
-          Go to Home Page
-        </button>
-      </Link>
+    <div className={styles.container}>
+      <div className={styles.section}>
+        <h1 className={styles.heading}>Customer Cart</h1>
+        <Link href="/">
+          <button className={styles.button}>Go to Home Page</button>
+        </Link>
+      </div>
     </div>
   );
 }
