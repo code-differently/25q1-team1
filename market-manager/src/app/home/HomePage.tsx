@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { Product } from '@/src/types/product';
 import styles from './HomePage.module.css';
+import Image from 'next/image';
 import User from '../components/User';
 
 export default function HomePage() {
@@ -12,7 +13,6 @@ export default function HomePage() {
     fetch('/api/products')
       .then((response) => response.json())
       .then((data) => {
-        console.log('Fruit API response', data);
         setProducts(data);
       })
       .catch((error) => {
@@ -21,38 +21,58 @@ export default function HomePage() {
   }, []);
 
   return (
-    <main className={styles.container}>
-      <section className={styles.section}>
-      <User />
-        <h1 className={styles.heading}>
-          🍓 Welcome to <span className={styles.headingHighlight}>Market Manager</span>
-        </h1>
+    <>
+      <header className={styles.header}>
+        <div className={styles.logoWrapper}>
+          <Image
+            src="/images/thymecratelogo transparent.png" // Make sure this image exists
+            alt="ThymeCrate Logo"
+            width={250}
+            height={80}
+            className={styles.logo}
+            priority
+          />
+        </div>
+        <User />
+      </header>
 
-        {products.length > 0 ? (
-          <div className={styles.tableContainer}>
-            <table className={styles.table}>
-              <thead className={styles.thead}>
-                <tr>
-                  <th className={styles.th}>Name</th>
-                  <th className={styles.th}>Quantity</th>
-                  <th className={styles.th}>Price</th>
-                </tr>
-              </thead>
-              <tbody>
-                {products.map((product) => (
-                  <tr key={product.id} className={styles.tr}>
-                    <td className={styles.td}>{product.name}</td>
-                    <td className={styles.td}>{product.quantity}</td>
-                    <td className={styles.td}>${product.price.toFixed(2)}</td>
+      <main className={styles.container}>
+        <section className={styles.section}>
+          <h1 className={styles.heading}>
+            Fresh Groceries Delivered
+          </h1>
+          <p className={styles.message}>
+            Browse our selection of high-quality, locally-sourced products.
+          </p>
+
+          {products.length > 0 ? (
+            <div className={styles.tableContainer}>
+              <table className={styles.table}>
+                <thead className={styles.thead}>
+                  <tr>
+                    <th className={styles.th}>Name</th>
+                    <th className={styles.th}>Quantity</th>
+                    <th className={styles.th}>Price</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        ) : (
-          <p className={styles.message}>No products available.</p>
-        )}
-      </section>
-    </main>
+                </thead>
+                <tbody>
+                  {products.map((product) => (
+                    <tr key={product.id} className={styles.tr}>
+                      <td className={styles.td}>{product.name}</td>
+                      <td className={styles.td}>{product.quantity}</td>
+                      <td className={styles.td}>${product.price.toFixed(2)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          ) : (
+            <p className={styles.message}>No products available.</p>
+          )}
+        </section>
+      </main>
+    </>
   );
+  
 }
+
