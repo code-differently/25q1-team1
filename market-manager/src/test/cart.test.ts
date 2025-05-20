@@ -1,53 +1,83 @@
-import { Cart } from '../lib/cart';
-import { Product } from '../types/product';
+import {
+  saveCartToFirestore,
+  getCartFromFirestore,
+} from '../lib/cart';
+import {
+  doc,
+  getDoc,
+  setDoc,
+} from 'firebase/firestore';
 
-describe('Cart functionality', () => {
-  let cart: Cart;
-  const product1: Product = {
-    id: '1',
-    name: 'Laptop',
-    price: 1000,
-    quantity: 0,
-    category: '',
-  };
-  const product2: Product = {
-    id: '2',
-    name: 'Phone',
-    price: 500,
-    quantity: 0,
-    category: '',
-  };
+jest.mock('../lib/firebase', () => ({
+  db: {}, // mock the Firestore db export
+}));
+
+jest.mock('firebase/firestore', () => ({
+  doc: jest.fn(),
+  getDoc: jest.fn(),
+  setDoc: jest.fn(),
+  serverTimestamp: jest.fn(() => 'mockTimestamp'),
+}));
+
+describe('Firestore Cart Functions', () => {
+  const mockUserId = 'testUser123';
+  const mockCartRef = { path: 'mock/doc/path' };
+  const mockProducts = [
+    { id: '1', name: 'Apple', price: 1.0, quantity: 3, category: 'fruit' },
+    { id: '2', name: 'Bread', price: 2.5, quantity: 1, category: 'bakery' },
+  ];
 
   beforeEach(() => {
-    cart = new Cart();
+    jest.clearAllMocks();
+    (doc as jest.Mock).mockReturnValue(mockCartRef);
   });
 
-  test('should add products correctly', () => {
-    cart.addProduct(product1, 2);
-    cart.addProduct(product2, 1);
+  it('should save cart to Firestore', async () => {
+    await saveCartToFirestore(mockUserId, mockProducts);
 
-    const items = cart.getProducts();
-    expect(items.length).toBe(2);
-    expect(items.find((item) => item.id === '1')?.quantity).toBe(2);
-    expect(items.find((item) => item.id === '2')?.quantity).toBe(1);
+    expect(doc).toHaveBeenCalledWith(expect.anything(), 'carts', mockUserId);
+    expect(setDoc).toHaveBeenCalledWith(
+      mockCartRef,
+      {
+        customerId: mockUserId,
+        products: mockProducts,
+        updatedAt: 'mockTimestamp',
+        createdAt: 'mockTimestamp',
+      },
+      { merge: true }
+    );
   });
 
-  test('should remove a product', () => {
-    cart.addProduct(product1, 1);
-    cart.addProduct(product2, 1);
-    cart.removeProduct('2');
+  it('should return products from Firestore if document exists', async () => {
+    (getDoc as jest.Mock).mockResolvedValue({
+      exists: () => true,
+      data: () => ({
+        products: mockProducts,
+      }),
+    });
 
-    const items = cart.getProducts();
-    expect(items.length).toBe(1);
-    expect(items[0].id).toBe('1');
+    const result = await getCartFromFirestore(mockUserId);
+    expect(doc).toHaveBeenCalledWith(expect.anything(), 'carts', mockUserId);
+    expect(getDoc).toHaveBeenCalledWith(mockCartRef);
+    expect(result).toEqual(mockProducts);
   });
 
-  test('should clear the cart', () => {
-    cart.addProduct(product1, 1);
-    cart.addProduct(product2, 1);
-    cart.clear();
+  it('should return empty array if document does not exist', async () => {
+    (getDoc as jest.Mock).mockResolvedValue({
+      exists: () => false,
+    });
 
-    expect(cart.getProducts()).toEqual([]);
+    const result = await getCartFromFirestore(mockUserId);
+    expect(result).toEqual([]);
+  });
+
+  it('should return empty array if products field is undefined', async () => {
+    (getDoc as jest.Mock).mockResolvedValue({
+      exists: () => true,
+      data: () => ({}),
+    });
+
+    const result = await getCartFromFirestore(mockUserId);
+    expect(result).toEqual([]);
   });
 });
-
