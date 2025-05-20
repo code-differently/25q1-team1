@@ -20,16 +20,27 @@ export default function HomePage() {
       });
   }, []);
 
+  const [isShrunk, setIsShrunk] = useState(false);
+
+useEffect(() => {
+  const handleScroll = () => {
+    setIsShrunk(window.scrollY > 50);
+  };
+
+  window.addEventListener('scroll', handleScroll);
+  return () => window.removeEventListener('scroll', handleScroll);
+}, []);
+
   return (
     <>
-      <header className={styles.header}>
+      <header className={`${styles.header} ${isShrunk ? styles.shrunk : ''}`}>
         <div className={styles.logoWrapper}>
           <Image
-            src="/images/thymecratelogo transparent.png" // Make sure this image exists
+            src="/images/transparentcrate.png" // Make sure this image exists
             alt="ThymeCrate Logo"
-            width={250}
-            height={80}
-            className={styles.logo}
+            width={900}
+            height={500}
+            className={`${styles.logo} ${isShrunk ? styles.logoShrunk : ''}`}
             priority
           />
         </div>
@@ -39,36 +50,38 @@ export default function HomePage() {
       <main className={styles.container}>
         <section className={styles.section}>
           <h1 className={styles.heading}>
-            Fresh Groceries Delivered
+            The Produce Junction
           </h1>
           <p className={styles.message}>
-            Browse our selection of high-quality, locally-sourced products.
+            Browse their selection of high-quality, locally-sourced products.
           </p>
 
           {products.length > 0 ? (
-            <div className={styles.tableContainer}>
-              <table className={styles.table}>
-                <thead className={styles.thead}>
-                  <tr>
-                    <th className={styles.th}>Name</th>
-                    <th className={styles.th}>Quantity</th>
-                    <th className={styles.th}>Price</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {products.map((product) => (
-                    <tr key={product.id} className={styles.tr}>
-                      <td className={styles.td}>{product.name}</td>
-                      <td className={styles.td}>{product.quantity}</td>
-                      <td className={styles.td}>${product.price.toFixed(2)}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          ) : (
-            <p className={styles.message}>No products available.</p>
-          )}
+  <div className={styles.productGrid}>
+    {products.map((product) => (
+      <div key={product.id} className={styles.productCard}>
+        <div className={styles.productImage}>
+          <img
+            src={product.imageUrl || "/images/placeholder.png"}
+            alt={product.name}
+          />
+        </div>
+        <div className={styles.productContent}>
+          <h3 className={styles.productName}>{product.name}</h3>
+          <p className={styles.productCategory}>Category: {product.category || 'General'}</p>
+          <p className={styles.productDescription}>
+            {product.description || 'No description provided.'}
+          </p>
+          <p className={styles.productPrice}>${product.price.toFixed(2)}</p>
+          <p className={styles.productStock}>{product.quantity} in stock</p>
+          <button className={styles.addToCart}>Add to Cart</button>
+        </div>
+      </div>
+    ))}
+  </div>
+) : (
+  <p className={styles.message}>No products available.</p>
+)}
         </section>
       </main>
     </>
