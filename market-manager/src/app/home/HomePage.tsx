@@ -45,10 +45,9 @@ export default function HomePage() {
   const handleAddToCart = (product: Product) => {
     const quantity = quantities[product.id] || 0;
     if (quantity === 0) return;
-  
-    // For now -- later replace this with saving to Firestore
+
     console.log('Adding to cart:', { ...product, quantity });
-  
+
     setQuantities((prev) => ({ ...prev, [product.id]: 0 }));
   };
 
@@ -70,11 +69,9 @@ export default function HomePage() {
 
       <main className={styles.container}>
         <section className={styles.section}>
-        <Slideshow />   {/* ✅ Add this line right here */}
+          <Slideshow />
 
-          <h1 className={styles.heading}>
-            The Produce Junction
-          </h1>
+          <h1 className={styles.heading}>The Produce Junction</h1>
           <p className={styles.message}>
             Browse their selection of high-quality, locally-sourced products.
           </p>
@@ -84,10 +81,10 @@ export default function HomePage() {
               {products.map((product) => (
                 <div key={product.id} className={styles.productCard}>
                   <div className={styles.productImage}>
-                  <img
-                    src={`/images/${product.img}` || "/images/placeholder.png"}
-                    alt={product.name}
-                  />
+                    <img
+                      src={`/images/${product.img}` || "/images/placeholder.png"}
+                      alt={product.name}
+                    />
                   </div>
                   <div className={styles.productContent}>
                     <h3 className={styles.productName}>{product.name}</h3>
@@ -95,13 +92,17 @@ export default function HomePage() {
                     <p className={styles.productDescription}>
                       {product.description || 'No description provided.'}
                     </p>
-                    <p className={styles.productPrice}>${product.price.toFixed(2)}</p>
-                    <p className={styles.productStock}>{product.quantity} in stock</p>
-                    <div className={styles.quantityControl}>
+
+                    {/* MOVE quantity controls here */}
+                    <div className={styles.quantityControlVertical}>
                       <button onClick={() => changeQuantity(product.id, -1)} className={styles.cartButton}>−</button>
                       <span className={styles.quantityDisplay}>{quantities[product.id] || 0}</span>
                       <button onClick={() => changeQuantity(product.id, 1)} className={styles.cartButton}>+</button>
                     </div>
+
+                    <p className={styles.productPrice}>${product.price.toFixed(2)}</p>
+                    <p className={styles.productStock}>{product.quantity} in stock</p>
+
                     <button
                       className={styles.addToCart}
                       onClick={() => handleAddToCart(product)}
@@ -119,6 +120,5 @@ export default function HomePage() {
         </section>
       </main>
     </>
-
   );
 }
