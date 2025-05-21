@@ -33,8 +33,10 @@
   }
   
   .headingHighlight {
-    color: #dcfce7;
+    
+    color: #fefa00cc;
   }
+  
   
   .message {
     color: #f3f4f6;
@@ -99,10 +101,7 @@
     color: #dcfce7;
   }
   
-  .memberDescription {
-    font-size: 0.95rem;
-    color: #f3f4f6;
-  }
+  
   
   /* Professional list style */
   .professionalList {
@@ -115,4 +114,62 @@
     font-size: 1rem;
     line-height: 1.5;
   }
+
+  .message {
+    font-size: 30px;
+  }
+
+  .memberDescription {
+    font-size: 20px;
+    color: #f3f4f6;
+    list-style-type: none;       /* 🔥 Removes the bullets */
+    padding-left: 0;             /* Remove default indent */
+    margin-left: 0;              /* Align with other content */
+  }
+  
+  .memberDescription li {
+    margin-bottom: 0.2rem;       /* Optional: spacing between items */
+  }
+  
+
+  .memberRole {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #dcfce7;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .highlightRasheed {
+    border: 3px solid yellow;
+    border-radius: 12px; /* optional: makes the corners rounded */
+    padding: 1rem;       /* optional: adds spacing inside the border */
+    box-shadow: 0 0 10px rgba(255, 255, 0, 0.5); /* optional glow */
+  }
+
+  .memberRoleRasheed {
+    color: yellow;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .memberRoleBackend {
+    color: rgb(0, 255, 17);
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .highlightBackend {
+    border: 3px solid #00ff1a;
+    border-radius: 12px;
+    padding: 1rem;
+    box-shadow: 0 0 10px rgba(0, 255, 26, 0.7);
+  }
+  
+  
+  
   

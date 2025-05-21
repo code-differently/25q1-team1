@@ -29,53 +29,59 @@ export default function AboutPage() {
 
         {/* 👨‍👩‍👧 Meet the Family Section */}
         <section className={styles.section}>
-          <h2 className={styles.heading}>Meet the <span className={styles.headingHighlight}>Family</span></h2>
+          <h2 className={styles.heading}>Meet the <span className={styles.headingHighlight}>Magic Makers</span></h2>
 
           <div className={styles.familyWrapper}>
             <div className={styles.familyGrid}>
-              <div className={styles.familyMember}>
-                <img src="/images/mom.jpg" alt="Mom" className={styles.familyPhoto} />
-                <h3 className={styles.memberName}>Mercedes Matthews</h3>
-                <p className={styles.memberDescription}>
-                  The heart of ThymeCrate. Maria handles sourcing and packaging with care. Her knowledge of local produce keeps our selection fresh and vibrant.
-                </p>
-              </div>
+            <div className={styles.familyMember}>
+  <img src="/images/Mercedes.jpg" alt="Mom" className={styles.familyPhoto} />
+  <h3 className={styles.memberName}>Mercedes Matthews</h3>
+  <p className={styles.memberRole}>Frontend Developer</p>
+  <p className={styles.memberDescription}>
+    The heart of ThymeCrate. Maria handles sourcing and packaging with care. Her knowledge of local produce keeps our selection fresh and vibrant.
+  </p>
+</div>
 
-              <div className={styles.familyMember}>
-                <img src="/images/dad.jpg" alt="Dad" className={styles.familyPhoto} />
-                <h3 className={styles.memberName}>Rasheed Miller</h3>
-                <p className={styles.memberDescription}>
-                  Logistics wizard. George ensures every crate arrives on time and intact. He’s the wheels and willpower of the team.
-                </p>
-              </div>
+<div className={`${styles.familyMember} ${styles.highlightRasheed}`}>
+  <img src="/images/Rasheed.jpeg" alt="Dad" className={styles.familyPhoto} />
+  <h3 className={styles.memberName}>Rasheed Miller</h3>
+  <p className={styles.memberRoleRasheed}>Scrum Master</p>
+  <p className={styles.memberDescription}>
+    Logistics wizard. George ensures every crate arrives on time and intact. He’s the wheels and willpower of the team.
+  </p>
+</div>
 
-              <div className={styles.familyMember}>
-                <img src="/images/daughter.jpg" alt="Daughter" className={styles.familyPhoto} />
-                <h3 className={styles.memberName}>John Bey</h3>
-                <ul className={styles.professionalList}>
-                  <li>Professional gamer.</li>
-                  <li>Professional loner.</li>
-                  <li>Professionally fatigued.</li>
-                  <li>Professionally lazy.</li>
-                  <li>Professional soon-to-be-Software Engineer 😉</li>
-                </ul>
-              </div>
+<div className={styles.familyMember}>
+  <img src="/images/Nana.jpg" alt="Dad" className={styles.familyPhoto} />
+  <h3 className={styles.memberName}>Nana</h3>
+  <p className={styles.memberRole}>Culinary Advisor</p>
+  <p className={styles.memberDescription}>
+    Logistics wizard. George ensures every crate arrives on time and intact. He’s the wheels and willpower of the team.
+  </p>
+</div>
 
-              <div className={styles.familyMember}>
-                <img src="/images/dad.jpg" alt="Dad" className={styles.familyPhoto} />
-                <h3 className={styles.memberName}>Jason Watson</h3>
-                <p className={styles.memberDescription}>
-                  Logistics wizard. George ensures every crate arrives on time and intact. He’s the wheels and willpower of the team.
-                </p>
-              </div>
+<div className={`${styles.familyMember} ${styles.highlightBackend}`}>
+  <img src="/images/jason.jpg" alt="Dad" className={styles.familyPhoto} />
+  <h3 className={styles.memberName}>Jason Watson</h3>
+  <p className={styles.memberRoleBackend}>Backend Developer</p>
+  <p className={styles.memberDescription}>
+    Logistics wizard. George ensures every crate arrives on time and intact. He’s the wheels and willpower of the team.
+  </p>
+</div>
 
-              <div className={styles.familyMember}>
-                <img src="/images/apple.jpg" alt="Dad" className={styles.familyPhoto} />
-                <h3 className={styles.memberName}>Nana</h3>
-                <p className={styles.memberDescription}>
-                  Logistics wizard. George ensures every crate arrives on time and intact. He’s the wheels and willpower of the team.
-                </p>
-              </div>
+<div className={`${styles.familyMember} ${styles.highlightBackend}`}>
+  <img src="/images/JBEY.jpg" alt="Daughter" className={styles.familyPhoto} />
+  <h3 className={styles.memberName}>John Bey</h3>
+  <p className={styles.memberRoleBackend}>Backend Developer</p>
+  <ul className={styles.memberDescription}>
+    <li>Professional gamer.</li>
+    <li>Professional loner.</li>
+    <li>Professionally fatigued.</li>
+    <li>Professionally lazy.</li>
+    <li>Professional soon-to-be-Software Engineer 😉</li>
+  </ul>
+</div>
+
 
             </div>
           </div>
