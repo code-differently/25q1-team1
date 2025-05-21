@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { Product } from '@/src/types/product';
 import styles from './HomePage.module.css';
 import Image from 'next/image';
-import User from '../components/User/User';
+import User from '../components/User';
 import { addProductToCart } from '@/src/lib/cart';
 import { auth } from '@/src/lib/firebase';
 import { ToastContainer, toast } from 'react-toastify';
