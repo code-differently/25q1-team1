@@ -125,6 +125,38 @@ describe('Firestore Cart Functions', () => {
     );
   });
 
+  it('should increase quantity if product is already in cart', async () => {
+    const productInCart = { ...mockProduct, quantity: 2 };
+    const quantityToAdd = 3;
+
+    (getDoc as jest.Mock).mockImplementation((ref) => {
+      if (ref.path === mockCartRef.path) {
+        return Promise.resolve({ exists: () => true, data: () => ({ products: [productInCart] }) });
+      }
+      if (ref.path === `products/${mockProduct.id}`) {
+        return Promise.resolve({ exists: () => true, data: () => ({ quantity: 10 }) });
+      }
+    });
+
+    await addProductToCart(mockUserId, mockProduct, quantityToAdd);
+
+    expect(setDoc).toHaveBeenCalledWith(
+      expect.objectContaining(mockCartRef),
+      expect.objectContaining({
+        customerId: mockUserId,
+        products: [{ ...mockProduct, quantity: 5 }], // 2 + 3
+        updatedAt: 'mockTimestamp',
+      }),
+      { merge: true }
+    );
+
+    expect(setDoc).toHaveBeenCalledWith(
+      expect.objectContaining({ path: `products/${mockProduct.id}` }),
+      { quantity: 7 },
+      { merge: true }
+    );
+  });
+
   it('should remove product from cart and restore stock', async () => {
     const productInCart = { ...mockProduct, quantity: 2 };
     const cartData = { products: [productInCart] };
