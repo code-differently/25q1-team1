@@ -1,10 +1,13 @@
-export interface Product {
+export type Product = {
   id: string;
   name: string;
-  quantity: number;
   price: number;
-  category: string;
-}
+  quantity: number;
+  img: string;
+  imageUrl?: string;
+  description?: string;
+  category?: string;
+};
 
 export function calculateTotal(product: Product): number {
   return product.price * product.quantity;
