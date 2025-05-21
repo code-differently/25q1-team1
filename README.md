@@ -43,26 +43,12 @@ To run the Thyme Crate app locally, follow these steps:
    ```bash
    npm install
 
-4. **Set up environment variables:**
-
-   Create a .env.local file in the root of the project and add your Firebase configuration:
-
-   NEXT_PUBLIC_FIREBASE_API_KEY=AIzaSyBQW_bjEj66-xJlyQXSGdyiTCX9BjRmVbU
-   NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=market-manager-25q1.firebaseapp.com
-   NEXT_PUBLIC_FIREBASE_PROJECT_ID=market-manager-25q1
-   NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=market-manager-25q1.firebasestorage.app
-   NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=576540605678
-   NEXT_PUBLIC_FIREBASE_APP_ID=1:576540605678:web:5fb22f902873bed11cc7ff
-   NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID=G-BDP41MXZE4
-
-   Replace each value above with your actual Firebase project credentials.
-
-5. **Run the development server:**
+4. **Run the development server:**
 
    ```bash
    npm run dev
 
-6. **Open the app in your browser:**
+5. **Open the app in your browser:**
 
    (http://localhost:3000)
 
