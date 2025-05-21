@@ -25,10 +25,25 @@ jest.mock('firebase/firestore', () => ({
 describe('Firestore Cart Functions', () => {
   const mockUserId = 'testUser123';
   const mockCartRef = { path: 'mock/doc/path' };
-  const mockProduct = { id: '1', name: 'Apple', price: 1.0, category: 'fruit', img: '', description: '' };
+  const mockProduct = {
+    id: '1',
+    name: 'Apple',
+    price: 1.0,
+    category: 'fruit',
+    img: '',
+    description: '',
+  };
   const mockProducts = [
     { ...mockProduct, quantity: 3 },
-    { id: '2', name: 'Bread', price: 2.5, quantity: 1, category: 'bakery', img: '', description: '' },
+    {
+      id: '2',
+      name: 'Bread',
+      price: 2.5,
+      quantity: 1,
+      category: 'bakery',
+      img: '',
+      description: '',
+    },
   ];
 
   beforeEach(() => {
@@ -106,6 +121,11 @@ describe('Firestore Cart Functions', () => {
     it('should update quantity if product already exists', async () => {
       (getDoc as jest.Mock).mockResolvedValue({
         exists: () => true,
+        data: () => [{ ...mockProduct, quantity: 3 }],
+      });
+
+      (getDoc as jest.Mock).mockResolvedValue({
+        exists: () => true,
         data: () => ({ products: [{ ...mockProduct, quantity: 3 }] }),
       });
 
@@ -125,6 +145,25 @@ describe('Firestore Cart Functions', () => {
     it('should create new cart if no existing cart', async () => {
       (getDoc as jest.Mock).mockResolvedValue({
         exists: () => false,
+      });
+
+      await addProductToCart(mockUserId, mockProduct, 1);
+
+      expect(setDoc).toHaveBeenCalledWith(
+        mockCartRef,
+        {
+          customerId: mockUserId,
+          products: [{ ...mockProduct, quantity: 1 }],
+          updatedAt: 'mockTimestamp',
+        },
+        { merge: true }
+      );
+    });
+
+    it('should handle undefined products by initializing with an empty array', async () => {
+      (getDoc as jest.Mock).mockResolvedValue({
+        exists: () => true,
+        data: () => ({ products: undefined }),
       });
 
       await addProductToCart(mockUserId, mockProduct, 1);
