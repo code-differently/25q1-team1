@@ -1,15 +1,18 @@
 import {
   saveCartToFirestore,
   getCartFromFirestore,
+  addProductToCart,
 } from '../lib/cart';
+
 import {
   doc,
   getDoc,
   setDoc,
+  serverTimestamp,
 } from 'firebase/firestore';
 
 jest.mock('../lib/firebase', () => ({
-  db: {}, // mock the Firestore db export
+  db: {}, // Mocked Firestore db object
 }));
 
 jest.mock('firebase/firestore', () => ({
@@ -22,9 +25,10 @@ jest.mock('firebase/firestore', () => ({
 describe('Firestore Cart Functions', () => {
   const mockUserId = 'testUser123';
   const mockCartRef = { path: 'mock/doc/path' };
+  const mockProduct = { id: '1', name: 'Apple', price: 1.0, category: 'fruit', img: '', description: '' };
   const mockProducts = [
-    { id: '1', name: 'Apple', price: 1.0, quantity: 3, category: 'fruit' },
-    { id: '2', name: 'Bread', price: 2.5, quantity: 1, category: 'bakery' },
+    { ...mockProduct, quantity: 3 },
+    { id: '2', name: 'Bread', price: 2.5, quantity: 1, category: 'bakery', img: '', description: '' },
   ];
 
   beforeEach(() => {
@@ -51,9 +55,7 @@ describe('Firestore Cart Functions', () => {
   it('should return products from Firestore if document exists', async () => {
     (getDoc as jest.Mock).mockResolvedValue({
       exists: () => true,
-      data: () => ({
-        products: mockProducts,
-      }),
+      data: () => ({ products: mockProducts }),
     });
 
     const result = await getCartFromFirestore(mockUserId);
@@ -79,5 +81,63 @@ describe('Firestore Cart Functions', () => {
 
     const result = await getCartFromFirestore(mockUserId);
     expect(result).toEqual([]);
+  });
+
+  describe('addProductToCart', () => {
+    it('should add a new product to an empty cart', async () => {
+      (getDoc as jest.Mock).mockResolvedValue({
+        exists: () => true,
+        data: () => ({ products: [] }),
+      });
+
+      await addProductToCart(mockUserId, mockProduct, 2);
+
+      expect(setDoc).toHaveBeenCalledWith(
+        mockCartRef,
+        {
+          customerId: mockUserId,
+          products: [{ ...mockProduct, quantity: 2 }],
+          updatedAt: 'mockTimestamp',
+        },
+        { merge: true }
+      );
+    });
+
+    it('should update quantity if product already exists', async () => {
+      (getDoc as jest.Mock).mockResolvedValue({
+        exists: () => true,
+        data: () => ({ products: [{ ...mockProduct, quantity: 3 }] }),
+      });
+
+      await addProductToCart(mockUserId, mockProduct, 2);
+
+      expect(setDoc).toHaveBeenCalledWith(
+        mockCartRef,
+        {
+          customerId: mockUserId,
+          products: [{ ...mockProduct, quantity: 5 }],
+          updatedAt: 'mockTimestamp',
+        },
+        { merge: true }
+      );
+    });
+
+    it('should create new cart if no existing cart', async () => {
+      (getDoc as jest.Mock).mockResolvedValue({
+        exists: () => false,
+      });
+
+      await addProductToCart(mockUserId, mockProduct, 1);
+
+      expect(setDoc).toHaveBeenCalledWith(
+        mockCartRef,
+        {
+          customerId: mockUserId,
+          products: [{ ...mockProduct, quantity: 1 }],
+          updatedAt: 'mockTimestamp',
+        },
+        { merge: true }
+      );
+    });
   });
 });
