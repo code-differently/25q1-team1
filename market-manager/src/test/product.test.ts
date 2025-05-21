@@ -57,4 +57,21 @@ describe('Product Interface', () => {
     const total = calculateTotal(productWithNegativePrice);
     expect(total).toBe(-999.90); // -99.99 * 10
   });
+
+  it('should create a Product with optional fields', () => {
+    const productWithOptionalFields: Product = {
+      id: 'prod-456',
+      name: 'Optional Fields Product',
+      quantity: 1,
+      price: 100,
+      img: 'img.png',
+      imageUrl: 'https://example.com/image.jpg',
+      description: 'A product with optional fields',
+      category: 'Gadgets'
+    };
+
+    expect(productWithOptionalFields.imageUrl).toBe('https://example.com/image.jpg');
+    expect(productWithOptionalFields.description).toBe('A product with optional fields');
+    expect(productWithOptionalFields.category).toBe('Gadgets');
+  });
 });
