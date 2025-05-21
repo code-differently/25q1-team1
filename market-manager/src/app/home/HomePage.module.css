@@ -3,10 +3,10 @@
 .header {
   width: 100%;
   height: 175px; /* Set a fixed height */
-  background: linear-gradient(to right, #7ba440, #b4c94f);
-  padding: 0 2rem;
+  background: linear-gradient(to right,#829F53, #9CB770);
+  padding: 0 2rem 0 0;
   display: flex;
-  justify-content: center; /* So logo and user component can spread out */
+  justify-content: space-between;
   align-items: center;
   position: sticky;
   top: 0;
@@ -17,34 +17,29 @@
 
 .shrunk {
   height: 60px;
-  padding: 0 1rem;
 }
 
 
 .logoShrunk {
-  height: 40px;
+  height: 60px;
 }
 
 .logoWrapper {
   transition: all 0.3s ease-in-out;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 }
 
 .logo {
-  width: 400px;       /* Set a fixed width */
-  height: auto;       /* Maintain aspect ratio */
   object-fit: contain;
-  margin-top: 8px;   /* Add vertical spacing */
   transition: height 0.3s ease-in-out;
+  margin-left: 0;
 }
-
-/* You can keep your existing styles below */
 
 .container {
   min-height: 100vh;
-  background: linear-gradient(to bottom right, #6b8e23, #b4c94f);
+  background:  #9CB770;
   padding: 2rem;
 }
 
@@ -59,9 +54,9 @@
 }
 
 .heading {
-  font-size: 2.25rem;
+  font-size: 2.5rem;
   font-weight: 700;
-  color: #ffffff;
+  color: #3c613b;
   margin-bottom: 1rem;
 }
 
@@ -79,7 +74,6 @@
   color: #f3f4f6;
 }
 
-/* ✅ move these OUTSIDE of .message */
 
 .productGrid {
   display: grid;
@@ -112,18 +106,13 @@
   font-size: 1.25rem;
   font-weight: 700;
   margin-bottom: 0.25rem;
+  color: #446d43;
 }
 
 .productCategory {
   font-size: 0.85rem;
-  color: #d1fae5;
+  color: #628061;
   margin-bottom: 0.5rem;
-}
-
-.productDescription {
-  font-size: 0.9rem;
-  margin-bottom: 0.75rem;
-  color: #f0fdf4;
 }
 
 .productPrice {
@@ -134,12 +123,12 @@
 
 .productStock {
   font-size: 0.9rem;
-  color: #bbf7d0;
+  color: #628061;
   margin-bottom: 1rem;
 }
 
 .addToCart {
-  background-color: #10b981;
+  background-color: #446d43;
   color: white;
   border: none;
   padding: 0.75rem;
@@ -149,7 +138,7 @@
 }
 
 .addToCart:hover {
-  background-color: #059669;
+  background-color: #628061;
 }
 
 .message {
@@ -159,15 +148,26 @@
 .quantityControl {
   display: flex;
   align-items: center;
-  justify-content: center; /* Make sure it's centered horizontally */
   gap: 0.5rem;
   width: 100%;
+  margin-bottom: 5px;
 }
-
-
 
 .quantityDisplay {
   min-width: 2ch;
   text-align: center;
   font-weight: bold;
+}
+
+.cartButton {
+  background-color: #446d43;
+  color: white;
+  border: none;
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+.cartButton:active {
+  background-color: #628061;
 }
