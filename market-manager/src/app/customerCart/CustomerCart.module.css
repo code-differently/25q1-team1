@@ -9,7 +9,7 @@
 .section {
   max-width: 80rem;
   margin: 0 auto;
-  background: rgba(255, 255, 255, 0.05);
+  background-color: rgba(255, 255, 255, 0.1);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
   border-radius: 1rem;
   padding: 2rem;
@@ -33,17 +33,17 @@
 .button {
   margin-top: 1.5rem;
   padding: 0.75rem 1.5rem;
-  background: linear-gradient(to right, #10b981, #059669); /* Emerald 500 → 600 */
+  background: linear-gradient(to right, #6a8e23d2, #749a28);
   color: #ffffff;
   font-weight: 600;
   border: none;
   border-radius: 0.5rem;
   cursor: pointer;
-  transition: background 0.3s ease, transform 0.2s ease;
+  transition: transform 0.3s ease;
 }
 
 .button:hover {
-  background: linear-gradient(to right, #059669, #047857); /* Emerald 600 → 700 */
+  background: #5a791dd2;
   transform: translateY(-2px);
 }
 
