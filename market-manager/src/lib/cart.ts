@@ -8,6 +8,40 @@ import {
 import type { Product } from '@/src/types/product';
 
 
+export async function addProductToCart(
+  userId: string,
+  product: Product,
+  quantity: number
+) {
+  const cartRef = doc(db, 'carts', userId);
+  const snapshot = await getDoc(cartRef);
+  let existingProducts: (Product & { quantity: number })[] = [];
+
+  if (snapshot.exists()) {
+    existingProducts = snapshot.data().products || [];
+  }
+
+  const updatedProducts = [...existingProducts];
+  const index = updatedProducts.findIndex((p) => p.id === product.id);
+
+  if (index !== -1) {
+    updatedProducts[index].quantity += quantity;
+  } else {
+    updatedProducts.push({ ...product, quantity });
+  }
+
+  await setDoc(
+    cartRef,
+    {
+      customerId: userId,
+      products: updatedProducts,
+      updatedAt: serverTimestamp(),
+    },
+    { merge: true }
+  );
+}
+
+
 export async function saveCartToFirestore(
   userId: string,
   products: (Product & { quantity: number })[]
