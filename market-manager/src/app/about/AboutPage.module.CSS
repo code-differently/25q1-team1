@@ -1,0 +1,77 @@
+.container {
+    min-height: 100vh;
+    background: linear-gradient(to bottom right, #6b8e23, #b4c94f);
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .section {
+    max-width: 800px;
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    border-radius: 1rem;
+    padding: 2.5rem;
+    backdrop-filter: blur(10px);
+  }
+  
+  .heading {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+  
+  .headingHighlight {
+    color: #dcfce7;
+  }
+  
+  .message {
+    color: #f3f4f6;
+    font-size: 1.1rem;
+    line-height: 1.75;
+    margin-bottom: 1.25rem;
+    text-align: center;
+  }
+  
+  .team {
+    margin-top: 3rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2rem;
+  }
+  
+  .member {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(6px);
+  }
+  
+  .memberImage {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1rem;
+    border: 2px solid #dcfce7;
+  }
+  
+  .memberName {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+  }
+  
+  .memberDescription {
+    color: #e5e7eb;
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+  
+  
