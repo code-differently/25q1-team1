@@ -26,7 +26,7 @@ export default function User() {
           
           {/* About button in front of the View Cart button */}
           <Link href="/about">
-            <button className={styles.aboutButton}>About</button>
+            <button className={styles.AboutButton}>About</button>
           </Link>
           
           <Link href="/customerCart">
@@ -41,7 +41,7 @@ export default function User() {
         <>
           {/* About button in front of the Login button */}
           <Link href="/about">
-            <button className={styles.aboutButton}>About</button>
+            <button className={styles.AboutButton}>About</button>
           </Link>
 
           <Link href="/login">

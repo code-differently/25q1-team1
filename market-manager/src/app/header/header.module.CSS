@@ -1,0 +1,36 @@
+/* HEADER SECTION */
+.header {
+    width: 100%;
+    height: 175px;
+    background: linear-gradient(to right, #7ba440, #b4c94f);
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .shrunk {
+    height: 60px; /* Reduced height when shrunk */
+    padding: 0 1rem; /* Less padding when shrunk */
+  }
+  
+  .logoWrapper {
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .logo {
+    object-fit: contain;
+    transition: height 0.3s ease-in-out;
+  }
+  
+  .logoShrunk {
+    height: 40px; /* Shrunk logo size */
+  }

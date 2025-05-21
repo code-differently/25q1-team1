@@ -20,6 +20,23 @@
   transition: transform 0.3s ease;
 }
 
+.AboutButton {
+  background: linear-gradient(to right, #d4af37, #f2c14e); /* Gold gradient (brighter gold) */
+  color: white;
+  border: none;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.AboutButton:hover {
+  background: linear-gradient(to right, #b88a3d, #f2a800); /* Darker gold to a rich, warm gold for hover effect */
+  transform: scale(1.05);
+}
+
+
+
 .button:hover {
   background: #5a791dd2;
 }
