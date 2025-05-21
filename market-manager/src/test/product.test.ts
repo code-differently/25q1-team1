@@ -7,6 +7,7 @@ describe('Product Interface', () => {
     quantity: 10,
     price: 99.99,
     category: 'Electronics',
+    img: ''
   };
 
   it('should create a valid Product object', () => {
@@ -16,6 +17,7 @@ describe('Product Interface', () => {
       quantity: 10,
       price: 99.99,
       category: 'Electronics',
+      img: ''
     });
   });
 

@@ -5,7 +5,11 @@ import { useEffect, useState } from 'react';
 import { Product } from '@/src/types/product';
 import styles from './HomePage.module.css';
 import Image from 'next/image';
-import User from '../components/User';
+import User from '../components/User/User';
+import { addProductToCart } from '@/src/lib/cart';
+import { auth } from '@/src/lib/firebase';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function HomePage() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -42,14 +46,27 @@ export default function HomePage() {
     });
   };
 
-  const handleAddToCart = (product: Product) => {
+  const handleAddToCart = async (product: Product) => {
     const quantity = quantities[product.id] || 0;
     if (quantity === 0) return;
-
-    console.log('Adding to cart:', { ...product, quantity });
-
-    setQuantities((prev) => ({ ...prev, [product.id]: 0 }));
+  
+    const user = auth.currentUser;
+    if (!user) {
+      toast.error('Please log in to add items to your cart.');
+      return;
+    }
+  
+    try {
+      await addProductToCart(user.uid, product, quantity);
+      toast.success(`Added ${quantity} of ${product.name} to cart!`);
+      setQuantities((prev) => ({ ...prev, [product.id]: 0 }));
+    } catch (err) {
+      console.error(err);
+      toast.error('Failed to add to cart.');
+    }
   };
+  
+  
 
   return (
     <>
@@ -89,12 +106,9 @@ export default function HomePage() {
                   <div className={styles.productContent}>
                     <h3 className={styles.productName}>{product.name}</h3>
                     <p className={styles.productCategory}>Category: {product.category || 'General'}</p>
-                    <p className={styles.productDescription}>
-                      {product.description || 'No description provided.'}
-                    </p>
 
                     {/* MOVE quantity controls here */}
-                    <div className={styles.quantityControlVertical}>
+                    <div className={styles.quantityControl}>
                       <button onClick={() => changeQuantity(product.id, -1)} className={styles.cartButton}>−</button>
                       <span className={styles.quantityDisplay}>{quantities[product.id] || 0}</span>
                       <button onClick={() => changeQuantity(product.id, 1)} className={styles.cartButton}>+</button>
@@ -119,6 +133,7 @@ export default function HomePage() {
           )}
         </section>
       </main>
+      <ToastContainer />
     </>
   );
 }
