@@ -2,11 +2,11 @@
 
 .header {
   width: 100%;
-  height: 175px; /* Set a fixed height */
+  height: 175px;
   background: linear-gradient(to right, #7ba440, #b4c94f);
   padding: 0 2rem;
   display: flex;
-  justify-content: center; /* So logo and user component can spread out */
+  justify-content: space-between;
   align-items: center;
   position: sticky;
   top: 0;
@@ -33,10 +33,7 @@
 }
 
 .logo {
-  width: 400px;       /* Set a fixed width */
-  height: auto;       /* Maintain aspect ratio */
   object-fit: contain;
-  margin-top: 8px;   /* Add vertical spacing */
   transition: height 0.3s ease-in-out;
 }
 
@@ -139,17 +136,17 @@
 }
 
 .addToCart {
-  background-color: #10b981;
+  background: linear-gradient(to right, #6a8e23d2, #7da729);
   color: white;
   border: none;
   padding: 0.75rem;
   border-radius: 0.5rem;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition : transform 0.3s ease;
 }
 
 .addToCart:hover {
-  background-color: #059669;
+  background: #5a791dd2;
 }
 
 .message {
@@ -159,9 +156,9 @@
 .quantityControl {
   display: flex;
   align-items: center;
-  justify-content: center; /* Make sure it's centered horizontally */
   gap: 0.5rem;
   width: 100%;
+  margin-bottom: 5px;
 }
 
 
@@ -170,4 +167,18 @@
   min-width: 2ch;
   text-align: center;
   font-weight: bold;
+}
+
+
+.cartButton {
+  background-color: #6a8e23d2;
+  color: white;
+  border: none;
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+.cartButton:active {
+  background-color: #5a791dd2;
 }
