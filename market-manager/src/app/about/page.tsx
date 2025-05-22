@@ -19,7 +19,7 @@ export default function AboutPage() {
             Our mission is to connect communities with seasonal fruits and vegetables through a seamless online experience.
           </p>
           <p className={styles.message}>
-            Whether youre shopping for your family or stocking up for a culinary adventure, 
+            Whether you are shopping for your family or stocking up for a culinary adventure, 
             our curated selections and easy-to-use platform are here to make grocery shopping more enjoyable.
           </p>
           <p className={styles.message}>
@@ -33,10 +33,10 @@ export default function AboutPage() {
 
           <div className={styles.familyWrapper}>
             <div className={styles.familyGrid}>
-            <div className={styles.familyMember}>
+            <div className={`${styles.familyMember} ${styles.highlightFrontend}`}>
   <img src="/images/Mercedes.jpg" alt="Mom" className={styles.familyPhoto} />
   <h3 className={styles.memberName}>Mercedes Matthews</h3>
-  <p className={styles.memberRole}>Frontend Developer</p>
+  <p className={styles.memberRoleFrontend}>Frontend Developer</p>
   <p className={styles.memberDescription}>
     The heart of ThymeCrate. Maria handles sourcing and packaging with care. Her knowledge of local produce keeps our selection fresh and vibrant.
   </p>
@@ -51,10 +51,10 @@ export default function AboutPage() {
   </p>
 </div>
 
-<div className={styles.familyMember}>
+<div className={`${styles.familyMember} ${styles.highlightFrontend}`}>
   <img src="/images/Nana.jpg" alt="Dad" className={styles.familyPhoto} />
   <h3 className={styles.memberName}>Nana</h3>
-  <p className={styles.memberRole}>Culinary Advisor</p>
+  <p className={styles.memberRoleFrontend}>Frontend Developer</p>
   <p className={styles.memberDescription}>
     Logistics wizard. George ensures every crate arrives on time and intact. He’s the wheels and willpower of the team.
   </p>
