@@ -42,6 +42,7 @@
   transition: transform 0.3s ease;
 }
 
+
 .button:hover .removeButton:hover{
   background: #5a791dd2;
   transform: translateY(-2px);
@@ -57,7 +58,6 @@
   cursor: pointer;
   transition: transform 0.3s ease;
 }
-
 
 /* Table Styles */
 .table {

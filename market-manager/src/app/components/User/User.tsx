@@ -17,6 +17,7 @@ export default function User() {
   };
 
   return (
+
     <>
       <div className={styles.wrapper}>
         {user ? (
@@ -51,3 +52,4 @@ export default function User() {
     </>
   );
 }
+

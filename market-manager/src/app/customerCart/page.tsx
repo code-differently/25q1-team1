@@ -68,6 +68,7 @@ export default function CustomerCart() {
                       Remove
                     </button>
                   </td>
+
                 </tr>
               ))}
             </tbody>

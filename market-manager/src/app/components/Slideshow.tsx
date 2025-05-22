@@ -1,19 +1,18 @@
 'use client';
 
-import "react-responsive-carousel/lib/styles/carousel.min.css";
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { Carousel } from 'react-responsive-carousel';
 
 const images = [
-  { src: "/images/slide2.png", alt: "Fresh produce 1" },
-  { src: "/images/slide1.JPEG", alt: "Fresh produce 2" },
-  { src: "/images/slide3.png", alt: "Fresh produce 3" },
+  { src: '/images/slide2.png', alt: 'Fresh produce 1' },
+  { src: '/images/slide1.JPEG', alt: 'Fresh produce 2' },
+  { src: '/images/slide3.png', alt: 'Fresh produce 3' },
 ];
 
 export default function Slideshow() {
   return (
 
-    <div style={{ width: 'auto', margin: 0, padding: 0 }}>
-
+    <div style={{ width: '100%', overflow: 'hidden' }}>
       <Carousel
         autoPlay
         infiniteLoop
@@ -21,24 +20,22 @@ export default function Slideshow() {
         showStatus={false}
         interval={5000}
         transitionTime={1000}
-        dynamicHeight={false}
         emulateTouch
         swipeable
         stopOnHover
+        showArrows={false}
       >
         {images.map((img, index) => (
           <div
             key={index}
             style={{
-              
-              width: 'auto',
-
-              height: '60vh',
+              width: '100%',
+              height: '65vh',
               display: 'flex',
-              justifyContent: 'center',
               alignItems: 'center',
-              overflow: 'hidden',
-            }}
+              justifyContent: 'center',
+              backgroundColor: '#e7f0db',
+      }}
           >
             <img
               src={img.src}
@@ -46,11 +43,13 @@ export default function Slideshow() {
               style={{
                 width: '100%',
                 height: '100%',
-                objectFit: 'contain',
+                objectFit: 'cover',
+                objectPosition:
+                  img.alt === 'Fresh produce 2' ? 'center 30%' : 'center center',
               }}
             />
           </div>
-        ))}
+))}
       </Carousel>
     </div>
   );

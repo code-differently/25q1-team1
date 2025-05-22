@@ -13,6 +13,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { collection, onSnapshot } from 'firebase/firestore';
 import { db } from '@/src/lib/firebase';
 
+
 export default function HomePage() {
   const [products, setProducts] = useState<Product[]>([]);
   const [isShrunk, setIsShrunk] = useState(false);
@@ -78,6 +79,7 @@ export default function HomePage() {
   
   
   
+
 
   return (
     <>

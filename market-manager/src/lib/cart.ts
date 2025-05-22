@@ -130,6 +130,8 @@ export async function removeProductFromCart(
   );
 }
 
+
+
 export async function saveCartToFirestore(
   userId: string,
   products: (Product & { quantity: number })[]
