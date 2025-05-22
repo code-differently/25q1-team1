@@ -41,7 +41,7 @@ export default function AboutPage() {
                 
                 <p className={styles.memberRoleFrontend}>Frontend Developer</p>
                 <p className={styles.memberDescription}>
-                  I'm Rasheed — Scrum Master and Frontend Developer at ThymeCrate, passionate about clean UI and leading agile teams to deliver user-friendly experiences.
+                  I’m Rasheed — Scrum Master and Frontend Developer at ThymeCrate, passionate about clean UI and leading agile teams to deliver user-friendly experiences.
                 </p>
               </div>
 
@@ -50,7 +50,7 @@ export default function AboutPage() {
                 <h3 className={styles.memberName}>Nana</h3>
                 <p className={styles.memberRoleFrontend}>Frontend Developer</p>
                 <p className={styles.memberDescription}>
-                  Greetings, I'm A’nanatawa — a Frontend developer at ThymeCrate. I specialize in crafting intuitive user interfaces, visual branding, and responsive layouts.
+                  Greetings, I’m A’nanatawa — a Frontend developer at ThymeCrate. I specialize in crafting intuitive user interfaces, visual branding, and responsive layouts.
                 </p>
               </div>
 
@@ -68,7 +68,7 @@ export default function AboutPage() {
                 <h3 className={styles.memberName}>Jason Watson</h3>
                 <p className={styles.memberRoleBackend}>Backend Developer</p>
                 <p className={styles.memberDescription}>
-                  Hi, I'm JSON — a backend developer at ThymeCrate. I specialize in building robust APIs and scalable server-side systems that keep our platform fast, secure, and reliable.
+                  Hi, I’m JSON — a backend developer at ThymeCrate. I specialize in building robust APIs and scalable server-side systems that keep our platform fast, secure, and reliable.
                 </p>
               </div>
 
