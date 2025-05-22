@@ -17,38 +17,37 @@ export default function User() {
   };
 
   return (
-    <div className={styles.wrapper}>
-      {user ? (
-        <>
-          <span className={styles.welcomeText}>
-            Welcome, {user.displayName || user.email}
-          </span>
-          
-          {/* About button in front of the View Cart button */}
-          <Link href="/about">
-            <button className={styles.AboutButton}>About</button>
-          </Link>
-          
-          <Link href="/customerCart">
-            <button className={styles.button}>View Cart</button>
-          </Link>
-          
-          <button onClick={handleLogout} className={styles.button}>
-            Logout
-          </button>
-        </>
-      ) : (
-        <>
-          {/* About button in front of the Login button */}
-          <Link href="/about">
-            <button className={styles.AboutButton}>About</button>
-          </Link>
+    <>
+      <div className={styles.wrapper}>
+        {user ? (
+          <>
+            <span className={styles.welcomeText}>
+              Welcome, {user.displayName || user.email}
+            </span>
 
-          <Link href="/login">
-            <button className={styles.button}>Login</button>
-          </Link>
-        </>
-      )}
-    </div>
+            <Link href="/customerCart">
+              <button className={styles.button}>View Cart</button>
+            </Link>
+
+            <button onClick={handleLogout} className={styles.button}>
+              Logout
+            </button>
+          </>
+        ) : (
+          <>
+            <Link href="/login">
+              <button className={styles.button}>Login</button>
+            </Link>
+          </>
+        )}
+      </div>
+
+      {/* Moved About button outside wrapper */}
+      <div className={styles.aboutWrapper}>
+        <Link href="/about">
+          <button className={styles.AboutButton}>About</button>
+        </Link>
+      </div>
+    </>
   );
 }

@@ -38,10 +38,10 @@ export default function AboutPage() {
                 <img src="/images/Rasheed.jpeg" alt="Dad" className={styles.familyPhoto} />
                 <h3 className={styles.memberName}>Rasheed Miller</h3>
                 <p className={styles.memberRoleRasheed}>Scrum Master</p>
-                <p className={styles.memberDescription}>&</p>
+                
                 <p className={styles.memberRoleFrontend}>Frontend Developer</p>
                 <p className={styles.memberDescription}>
-                  Logistics wizard. George ensures every crate arrives on time and intact. He’s the wheels and willpower of the team.
+                  I'm Rasheed — Scrum Master and Frontend Developer at ThymeCrate, passionate about clean UI and leading agile teams to deliver user-friendly experiences.
                 </p>
               </div>
 
@@ -50,7 +50,7 @@ export default function AboutPage() {
                 <h3 className={styles.memberName}>Nana</h3>
                 <p className={styles.memberRoleFrontend}>Frontend Developer</p>
                 <p className={styles.memberDescription}>
-                  Logistics wizard. George ensures every crate arrives on time and intact. He’s the wheels and willpower of the team.
+                  Greetings, I'm A’nanatawa — a Frontend developer at ThymeCrate. I specialize in crafting intuitive user interfaces, visual branding, and responsive layouts.
                 </p>
               </div>
 
@@ -59,16 +59,16 @@ export default function AboutPage() {
                 <h3 className={styles.memberName}>Mercedes Mathews</h3>
                 <p className={styles.memberRoleBackend}>Backend Developer</p>
                 <p className={styles.memberDescription}>
-                Mercedes is a backend developer for ThymeCrate, where she built the server-side logic and integrated Firebase to manage customer data, reservations, and product inventory.
+                Mercedes is a backend developer at ThymeCrate, where she built the server-side logic and integrated Firebase to manage customer data, reservations, and product inventory.
                 </p>
               </div>
 
               <div className={`${styles.familyMember} ${styles.highlightBackend}`}>
-                <img src="/images/jason.jpg" alt="Dad" className={styles.familyPhoto} />
+                <img src="/images/Jason.jpg" alt="Dad" className={styles.familyPhoto} />
                 <h3 className={styles.memberName}>Jason Watson</h3>
                 <p className={styles.memberRoleBackend}>Backend Developer</p>
                 <p className={styles.memberDescription}>
-                  Logistics wizard. George ensures every crate arrives on time and intact. He’s the wheels and willpower of the team.
+                  Hi, I'm JSON — a backend developer at ThymeCrate. I specialize in building robust APIs and scalable server-side systems that keep our platform fast, secure, and reliable.
                 </p>
               </div>
 
@@ -81,7 +81,7 @@ export default function AboutPage() {
                   <li>Professional loner.</li>
                   <li>Professionally fatigued.</li>
                   <li>Professionally lazy.</li>
-                  <li>Professional soon-to-be-Software Engineer 😉</li>
+                  <li>Professional soon-to-be-Software Engineer</li>
                 </ul>
               </div>
 
