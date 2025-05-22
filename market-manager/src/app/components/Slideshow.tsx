@@ -36,19 +36,19 @@ export default function Slideshow() {
               justifyContent: 'center',
               backgroundColor: '#e7f0db',
       }}
-  >
-    <img
-      src={img.src}
-      alt={img.alt}
-      style={{
-        width: '100%',
-        height: '100%',
-        objectFit: 'cover',
-        objectPosition:
-          img.alt === 'Fresh produce 2' ? 'center bottom' : 'center center',
-      }}
-    />
-  </div>
+          >
+            <img
+              src={img.src}
+              alt={img.alt}
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                objectPosition:
+                  img.alt === 'Fresh produce 2' ? 'center 30%' : 'center center',
+              }}
+            />
+          </div>
 ))}
       </Carousel>
     </div>
