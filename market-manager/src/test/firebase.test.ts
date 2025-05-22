@@ -1,11 +1,4 @@
 // __tests__/firebase.test.ts
-import { initializeApp, getApps, getApp } from 'firebase/app';
-import { getAuth } from 'firebase/auth';
-import { getFirestore } from 'firebase/firestore';
-import { getStorage } from 'firebase/storage';
-import { getAnalytics, isSupported } from 'firebase/analytics';
-
-// Mock all Firebase SDK functions
 jest.mock('firebase/app', () => ({
   initializeApp: jest.fn(),
   getApps: jest.fn(),
@@ -34,14 +27,11 @@ process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID = 'fake-messaging-id';
 process.env.NEXT_PUBLIC_FIREBASE_APP_ID = 'fake-app-id';
 process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID = 'fake-measurement-id';
 
-// Now import your module
-import { app, auth, db, storage } from '../lib/firebase';
-
 describe('Firebase initialization', () => {
   it('should initialize Firebase app if not already initialized', () => {
     const { getApps, initializeApp } = require('firebase/app');
     (getApps as jest.Mock).mockReturnValue([]);
-    require('../lib/firebase'); // re-require to trigger the init
+    require('../lib/firebase');
     expect(initializeApp).toHaveBeenCalledWith({
       apiKey: 'fake-api-key',
       authDomain: 'fake-auth-domain',
@@ -54,47 +44,41 @@ describe('Firebase initialization', () => {
   });
 
   it('should use existing Firebase app if already initialized', async () => {
-  // Clear previous imports from the cache
-  jest.resetModules();
+    jest.resetModules();
 
-  // Mock Firebase modules AFTER resetModules
-  const mockGetApps = jest.fn(() => [{}]);
-  const mockGetApp = jest.fn();
+    const mockGetApps = jest.fn(() => [{}]);
+    const mockGetApp = jest.fn();
 
-  jest.doMock('firebase/app', () => ({
-    getApps: mockGetApps,
-    getApp: mockGetApp,
-    initializeApp: jest.fn(),
-  }));
+    jest.doMock('firebase/app', () => ({
+      getApps: mockGetApps,
+      getApp: mockGetApp,
+      initializeApp: jest.fn(),
+    }));
+    jest.doMock('firebase/auth', () => ({ getAuth: jest.fn() }));
+    jest.doMock('firebase/firestore', () => ({ getFirestore: jest.fn() }));
+    jest.doMock('firebase/storage', () => ({ getStorage: jest.fn() }));
+    jest.doMock('firebase/analytics', () => ({
+      getAnalytics: jest.fn(),
+      isSupported: jest.fn(() => Promise.resolve(false)),
+    }));
 
-  jest.doMock('firebase/auth', () => ({
-    getAuth: jest.fn(),
-  }));
-  jest.doMock('firebase/firestore', () => ({
-    getFirestore: jest.fn(),
-  }));
-  jest.doMock('firebase/storage', () => ({
-    getStorage: jest.fn(),
-  }));
-  jest.doMock('firebase/analytics', () => ({
-    getAnalytics: jest.fn(),
-    isSupported: jest.fn(() => Promise.resolve(false)),
-  }));
+    await import('../lib/firebase');
 
-  // Now re-import firebase module to trigger fresh initialization logic
-  await import('../lib/firebase');
-
-  // ✅ Verify that getApp() was called
-  expect(mockGetApp).toHaveBeenCalled();
-});
+    expect(mockGetApp).toHaveBeenCalled();
+  });
 
   it('should initialize auth, firestore, storage', () => {
+    const { getAuth } = require('firebase/auth');
+    const { getFirestore } = require('firebase/firestore');
+    const { getStorage } = require('firebase/storage');
+
     expect(getAuth).toHaveBeenCalled();
     expect(getFirestore).toHaveBeenCalled();
     expect(getStorage).toHaveBeenCalled();
   });
 
   it('should check if analytics is supported', async () => {
+    const { isSupported } = require('firebase/analytics');
     expect(isSupported).toHaveBeenCalled();
   });
 });
