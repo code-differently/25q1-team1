@@ -10,6 +10,8 @@ import { addProductToCart } from '@/src/lib/cart';
 import { auth } from '@/src/lib/firebase';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { collection, onSnapshot } from 'firebase/firestore';
+import { db } from '@/src/lib/firebase';
 
 export default function HomePage() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -17,15 +19,18 @@ export default function HomePage() {
   const [quantities, setQuantities] = useState<{ [productId: string]: number }>({});
 
   useEffect(() => {
-    fetch('/api/products')
-      .then((response) => response.json())
-      .then((data) => {
-        setProducts(data);
-      })
-      .catch((error) => {
-        console.error('Error calling fruit API:', error);
-      });
+    const unsubscribe = onSnapshot(collection(db, 'products'), (snapshot) => {
+      const realTimeProducts: Product[] = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      })) as Product[];
+  
+      setProducts(realTimeProducts);
+    });
+  
+    return () => unsubscribe(); // Clean up listener on unmount
   }, []);
+  
 
   useEffect(() => {
     const handleScroll = () => {
@@ -60,11 +65,17 @@ export default function HomePage() {
       await addProductToCart(user.uid, product, quantity);
       toast.success(`Added ${quantity} of ${product.name} to cart!`);
       setQuantities((prev) => ({ ...prev, [product.id]: 0 }));
-    } catch (err) {
+    } catch (err: unknown) {
       console.error(err);
-      toast.error('Failed to add to cart.');
+    
+      if (err instanceof Error && err.message.toLowerCase().includes('stock')) {
+        toast.error(err.message);
+      } else {
+        toast.error('Failed to add to cart.');
+      }
     }
   };
+  
   
   
 

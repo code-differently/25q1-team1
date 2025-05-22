@@ -41,28 +41,45 @@ export async function addProductToCart(
   quantity: number
 ) {
   const cartRef = doc(db, 'carts', userId);
-  const snapshot = await getDoc(cartRef);
+  const productRef = doc(db, 'products', product.id);
+
+  const [cartSnap, productSnap] = await Promise.all([
+    getDoc(cartRef),
+    getDoc(productRef),
+  ]);
+
+  if (!productSnap.exists()) {
+    throw new Error('Product does not exist!');
+  }
+
+  const availableStock = productSnap.data().quantity || 0;
+
+  if (quantity > availableStock) {
+    throw new Error(`Only ${availableStock} of ${product.name} left in stock`);
+  }
+
   let existingProducts: (Product & { quantity: number })[] = [];
 
-  if (snapshot.exists()) {
-    existingProducts = snapshot.data().products || [];
+  if (cartSnap.exists()) {
+    existingProducts = cartSnap.data().products || [];
   }
 
   const updatedProducts = [...existingProducts];
   const index = updatedProducts.findIndex((p) => p.id === product.id);
 
   if (index !== -1) {
+    // ✅ We no longer need to pre-check cart + quantity vs stock here
     updatedProducts[index].quantity += quantity;
   } else {
     updatedProducts.push({ ...product, quantity });
   }
 
-  // ✅ Try to update stock — abort if insufficient
+  // ✅ Still use the transaction to actually update stock safely
   try {
     await updateProductStock(product.id, -quantity);
   } catch (error) {
-    console.error('Error adding to cart:', error);
-    throw new Error('Not enough stock to add to cart');
+    console.error('Error updating stock:', error);
+    throw new Error('Failed to update stock');
   }
 
   await setDoc(
@@ -75,6 +92,7 @@ export async function addProductToCart(
     { merge: true }
   );
 }
+
 
 export async function removeProductFromCart(
   userId: string,
