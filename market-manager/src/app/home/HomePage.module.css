@@ -46,19 +46,19 @@
 }
 
 .section {
-  max-width: 1200px;
-  margin: 0 auto;
-  background: rgba(255, 255, 255, 0.05);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  background: #dde1d2; /* or try #f9fafb for soft gray-white */
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
   border-radius: 1rem;
   padding: 2rem;
-  backdrop-filter: blur(10px);
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .heading {
-  font-size: 2.25rem;
+  font-size: 2.75rem;
   font-weight: 700;
-  color: #ffffff;
+  font-family: 'Playfair Display', serif;
+  color: #7ba440; /* Earthy green */
   margin-bottom: 1rem;
 }
 
@@ -73,7 +73,13 @@
 }
 
 .message {
-  color: #f3f4f6;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  font-size: 1.15rem;
+  color: #444444; /* slightly softer than black */
+  letter-spacing: 0.3px;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
 }
 
 /* ✅ move these OUTSIDE of .message */
@@ -86,11 +92,10 @@
 }
 
 .productCard {
-  background-color: rgba(255, 255, 255, 0.1);
+  background: linear-gradient(to bottom right, #7ba440, #b4c94f);
   border-radius: 1rem;
   padding: 1.5rem;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(8px);
   color: #fff;
   display: flex;
   flex-direction: column;
@@ -106,21 +111,28 @@
 }
 
 .productName {
+  font-family: 'Raleway', sans-serif;
   font-size: 1.25rem;
-  font-weight: 700;
+  font-weight: 600;
+  letter-spacing: 0.5px;
   margin-bottom: 0.25rem;
 }
 
 .productCategory {
+  font-family: 'Raleway', sans-serif;
   font-size: 0.85rem;
+  font-weight: 400;
   color: #d1fae5;
   margin-bottom: 0.5rem;
 }
 
 .productDescription {
-  font-size: 0.9rem;
-  margin-bottom: 0.75rem;
+  font-family: 'Raleway', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 300;
   color: #f0fdf4;
+  margin-bottom: 0.75rem;
+  line-height: 1.5;
 }
 
 .productPrice {
@@ -133,6 +145,7 @@
   font-size: 0.9rem;
   color: #bbf7d0;
   margin-bottom: 1rem;
+  font-family: 'Raleway', sans-serif;
 }
 
 .addToCart {
