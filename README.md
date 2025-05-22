@@ -82,11 +82,13 @@ Back End Developers: Mercedes Mathews, Jason Watson, John Bey
 
 - Admin dashboard for store owners to manage inventory.
 
+- Responsive Mobile UI
+
 - Customer login and order history.
 
 - Pickup time scheduling.
 
-- Text and/or email notifications for order confirmations.
+- Text and email notifications for order confirmations.
 
 ## Credits
 
