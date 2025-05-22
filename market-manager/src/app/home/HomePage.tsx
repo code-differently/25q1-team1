@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { Product } from '@/src/types/product';
 import styles from './HomePage.module.css';
 import Image from 'next/image';
-import User from '../components/User';
+import User from '../components/User/User';
 import { addProductToCart } from '@/src/lib/cart';
 import { auth } from '@/src/lib/firebase';
 import { ToastContainer, toast } from 'react-toastify';
@@ -73,10 +73,10 @@ export default function HomePage() {
       <header className={`${styles.header} ${isShrunk ? styles.shrunk : ''}`}>
         <div className={styles.logoWrapper}>
           <Image
-            src="/images/transparentcrate.png"
+            src="/images/transparentcrate-cropped.png"
             alt="ThymeCrate Logo"
-            width={900}
-            height={500}
+            width={isShrunk ? 100 : 100}
+            height={isShrunk ? 50 : 100}
             className={`${styles.logo} ${isShrunk ? styles.logoShrunk : ''}`}
             priority
           />
