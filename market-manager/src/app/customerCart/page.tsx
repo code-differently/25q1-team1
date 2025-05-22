@@ -2,10 +2,11 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { getCartFromFirestore } from '@/src/lib/cart';
+import { getCartFromFirestore, removeProductFromCart } from '@/src/lib/cart';
 import useUser from '../hooks/useUser';
 import { Product } from '@/src/types/product';
 import styles from './CustomerCart.module.css';
+
 
 export default function CustomerCart() {
   const user = useUser();
@@ -20,6 +21,19 @@ export default function CustomerCart() {
   }, [user]);
 
   const total = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+  const handleRemove = async (productId: string) => {
+    if (!user?.uid) return;
+  
+    try {
+      await removeProductFromCart(user.uid, productId);
+      const updatedCart = await getCartFromFirestore(user.uid);
+      setItems(updatedCart);
+    } catch (error) {
+      console.error('Error removing item:', error);
+    }
+  };
+  
 
   return (
     <div className={styles.container}>
@@ -36,6 +50,7 @@ export default function CustomerCart() {
                 <th>Qty</th>
                 <th>Price</th>
                 <th>Subtotal</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -45,6 +60,15 @@ export default function CustomerCart() {
                   <td>{item.quantity}</td>
                   <td>${item.price.toFixed(2)}</td>
                   <td>${(item.price * item.quantity).toFixed(2)}</td>
+                  <td>
+                    <button
+                      className={styles.removeButton}
+                      onClick={() => handleRemove(item.id)}
+                    >
+                      Remove
+                    </button>
+                  </td>
+
                 </tr>
               ))}
             </tbody>
@@ -52,6 +76,7 @@ export default function CustomerCart() {
               <tr>
                 <td colSpan={3}><strong>Total</strong></td>
                 <td><strong>${total.toFixed(2)}</strong></td>
+                <td colSpan={1}></td>
               </tr>
             </tfoot>
           </table>
