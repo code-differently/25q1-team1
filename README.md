@@ -4,7 +4,7 @@
   <img src="https://github.com/user-attachments/assets/36b5d416-6e4b-4ba8-a055-f7f3347bd37f" alt="Thyme Crate Logo" width="300"/>
 </p>
 
-Demo Link: _____________________
+Demo Link: [https://25q1-team1.vercel.app](https://25q1-team1.vercel.app)
 
 ## Our Why
 
@@ -43,26 +43,12 @@ To run the Thyme Crate app locally, follow these steps:
    ```bash
    npm install
 
-4. **Set up environment variables:**
-
-   Create a .env.local file in the root of the project and add your Firebase configuration:
-
-   NEXT_PUBLIC_FIREBASE_API_KEY=AIzaSyBQW_bjEj66-xJlyQXSGdyiTCX9BjRmVbU
-   NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=market-manager-25q1.firebaseapp.com
-   NEXT_PUBLIC_FIREBASE_PROJECT_ID=market-manager-25q1
-   NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=market-manager-25q1.firebasestorage.app
-   NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=576540605678
-   NEXT_PUBLIC_FIREBASE_APP_ID=1:576540605678:web:5fb22f902873bed11cc7ff
-   NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID=G-BDP41MXZE4
-
-   Replace each value above with your actual Firebase project credentials.
-
-5. **Run the development server:**
+4. **Run the development server:**
 
    ```bash
    npm run dev
 
-6. **Open the app in your browser:**
+5. **Open the app in your browser:**
 
    (http://localhost:3000)
 
@@ -76,19 +62,21 @@ Scrum Master: Rasheed Miller
 
 Front End Developers: Rasheed Miller and A'nanatawa McIntyre
 
-Back End Developers: Mercedes Matthews, Jason Watson, John Bey
+Back End Developers: Mercedes Mathews, Jason Watson, John Bey
 
 ## Screenshots 
 
-<img width="1063" alt="Image" src="https://github.com/user-attachments/assets/1072328d-6a65-4942-96f1-dfbf24e0fa36" />
+![Image](https://github.com/user-attachments/assets/db0b7588-b189-4d20-ae4f-857147a77703)
 
-<img width="1062" alt="Image" src="https://github.com/user-attachments/assets/21bf5539-6ff3-4c58-b6dc-aeefb9655909" />
+![Image](https://github.com/user-attachments/assets/8c9d8450-0436-4bae-b6ea-e6a2f1ba7212)
 
-<img width="1064" alt="Image" src="https://github.com/user-attachments/assets/7501f35b-49e8-48b8-8edd-7e85cdc40982" />
+![Image](https://github.com/user-attachments/assets/d7a1fc26-5647-4f9c-b275-9b7c60adb642)
+
+![Image](https://github.com/user-attachments/assets/f33d90f3-dcdd-4ad1-999a-7dabb06c58ad)
 
 ## Known Issues
 
-- Admin features are not yet established 
+- The header bounces when you scroll down slightly. 
 
 ## Roadmap Features
 
