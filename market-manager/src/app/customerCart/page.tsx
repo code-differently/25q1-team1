@@ -50,7 +50,7 @@ export default function CustomerCart() {
                 <th>Qty</th>
                 <th>Price</th>
                 <th>Subtotal</th>
-                <th></th> {/* Empty header cell for the Remove button */}
+                <th></th>
               </tr>
             </thead>
             <tbody>
